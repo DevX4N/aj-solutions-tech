@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, Gauge, MousePointerClick, Smartphone, Sparkles } from 'lucide-react'
 import { whatsappHref } from '../lib/site'
 import BrowserMock from './BrowserMock'
+import CursorGrid from './CursorGrid'
 
 const proof = [
   { icon: Sparkles, label: 'Design personalizado' },
@@ -56,6 +57,9 @@ export default function Hero() {
       {/* Static ambient glows — controlled, not soup */}
       <div className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-electric/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-[-10%] h-[420px] w-[520px] rounded-full bg-violet/10 blur-[130px]" />
+
+      {/* Cursor-reactive grid — cells light up around the pointer */}
+      <CursorGrid />
 
       <div className="shell relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
