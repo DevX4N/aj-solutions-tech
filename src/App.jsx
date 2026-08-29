@@ -15,6 +15,7 @@ import Testimonials from './components/Testimonials'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import SmoothCursor from './components/SmoothCursor'
 import { whatsappHref } from './lib/site'
 
 export default function App() {
@@ -31,6 +32,8 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-ink">
+      <SmoothCursor />
+
       {/* Scroll progress */}
       {!reduce && (
         <motion.div

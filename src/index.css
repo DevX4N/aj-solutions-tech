@@ -67,6 +67,13 @@
   select {
     caret-color: #7AA2FF;
   }
+
+  /* Custom smooth cursor: hide the native pointer only while it is active
+     (desktop + fine pointer). Touch/reduced-motion never gets this class. */
+  html.cursor-hidden,
+  html.cursor-hidden * {
+    cursor: none !important;
+  }
 }
 
 @layer components {

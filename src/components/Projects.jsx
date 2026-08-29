@@ -1,43 +1,13 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '../lib/site'
 import { Reveal, SectionMark } from './primitives'
 
 export default function Projects() {
   const reduce = useReducedMotion()
-  const sectionRef = useRef(null)
-  const [cursor, setCursor] = useState({ x: 0, y: 0, active: false })
-
-  // Custom "Ver projeto" cursor — desktop + fine pointer only.
-  useEffect(() => {
-    if (reduce) return
-    const finePointer = window.matchMedia('(pointer: fine)').matches
-    if (!finePointer) return
-    const move = (e) => setCursor((c) => ({ ...c, x: e.clientX, y: e.clientY }))
-    window.addEventListener('pointermove', move)
-    return () => window.removeEventListener('pointermove', move)
-  }, [reduce])
-
-  const setActive = (active) => setCursor((c) => ({ ...c, active }))
 
   return (
-    <section id="projetos" ref={sectionRef} className="relative py-24 sm:py-28">
-      {/* Custom cursor bubble */}
-      {!reduce && (
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none fixed left-0 top-0 z-[60] hidden lg:grid"
-          style={{ x: cursor.x, y: cursor.y }}
-          animate={{ scale: cursor.active ? 1 : 0, opacity: cursor.active ? 1 : 0 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="-translate-x-1/2 -translate-y-1/2 grid h-[86px] w-[86px] place-items-center rounded-full bg-electric text-[12px] font-semibold uppercase tracking-[0.08em] text-ink shadow-[0_10px_40px_-8px_rgba(91,140,255,0.7)]">
-            Ver projeto
-          </span>
-        </motion.div>
-      )}
-
+    <section id="projetos" className="relative py-24 sm:py-28">
       <div className="shell">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
@@ -55,13 +25,7 @@ export default function Projects() {
         <div className="flex flex-col gap-6 lg:gap-8">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={0.04}>
-              <ProjectRow
-                project={p}
-                flip={i % 2 === 1}
-                onEnter={() => setActive(true)}
-                onLeave={() => setActive(false)}
-                reduce={reduce}
-              />
+              <ProjectRow project={p} flip={i % 2 === 1} reduce={reduce} />
             </Reveal>
           ))}
         </div>
@@ -70,12 +34,12 @@ export default function Projects() {
   )
 }
 
-function ProjectRow({ project, flip, onEnter, onLeave, reduce }) {
+function ProjectRow({ project, flip, reduce }) {
   return (
     <a
       href="#contato"
-      onPointerEnter={onEnter}
-      onPointerLeave={onLeave}
+      data-cursor="project"
+      aria-label={`${project.name} — ${project.kind}`}
       className="group grid overflow-hidden rounded-3xl border border-line bg-ink-800/50 transition-colors duration-300 hover:border-white/15 lg:grid-cols-2"
     >
       {/* Visual */}
