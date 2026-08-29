@@ -33,7 +33,6 @@ export const nav = [
 export const marqueeItems = [
   'Web Design',
   'Landing Pages',
-  'React',
   'Interfaces',
   'Performance',
   'UX / UI',

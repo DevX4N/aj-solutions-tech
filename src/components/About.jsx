@@ -24,7 +24,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="mt-10 grid max-w-lg grid-cols-3 gap-4">
+            <div className="mt-10 grid max-w-lg grid-cols-1 gap-3 min-[480px]:grid-cols-3 sm:gap-4">
               {[
                 ['Design', 'interfaces com identidade'],
                 ['Tecnologia', 'código moderno e leve'],

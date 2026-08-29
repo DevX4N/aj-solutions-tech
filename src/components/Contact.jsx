@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ArrowRight, Check, Loader2, MessageCircle } from 'lucide-react'
-import { budgetRanges, contact, projectTypes, whatsappHref } from '../lib/site'
+import { budgetRanges, projectTypes, whatsappHref } from '../lib/site'
 import { SectionMark } from './primitives'
 
 const EMPTY = {
@@ -95,13 +95,6 @@ export default function Contact() {
                 Sem templates genéricos. Cada projeto é pensado para a sua marca. Design bonito é
                 importante — resultado também.
               </p>
-              {/* PLACEHOLDER — trocar pelo e-mail real da agência */}
-              <a
-                href={`mailto:${contact.email}`}
-                className="inline-block font-mono text-[13px] text-chalk-dim underline decoration-line underline-offset-4 transition-colors hover:text-electric-bright"
-              >
-                {contact.email}
-              </a>
             </div>
           </div>
 
