@@ -133,36 +133,47 @@ export default function BrowserMock({ reduce }) {
 }
 
 // Phone mockup overlapping the desktop browser's bottom-right corner: the same
-// site rendered mobile-first. Enters from the right with a fade, then floats.
+// site rendered mobile-first, with unmistakable device signals (speaker + front
+// camera, tall body, home indicator). Enters from the right, then floats.
 function MobilePhone({ reduce }) {
   return (
     <motion.div
-      initial={reduce ? {} : { opacity: 0, x: 44 }}
+      initial={reduce ? {} : { opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.75, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute -bottom-4 -right-2 z-20 w-[104px] sm:-bottom-6 sm:-right-4 sm:w-[128px] lg:-bottom-12 lg:-right-8 lg:w-[150px]"
+      transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+      className="absolute bottom-1 right-1 z-20 w-[116px] sm:-bottom-9 sm:-right-2 sm:w-[140px] lg:-bottom-[72px] lg:-right-4 lg:w-[166px]"
     >
+      {/* Discreet blue glow + soft dark backdrop to lift the phone off the grid */}
+      <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[44px] bg-electric/10 blur-xl" />
+      <div className="pointer-events-none absolute inset-2 -z-10 rounded-[40px] bg-ink/50 blur-lg" />
+
       <motion.div
-        style={{ rotate: 2.5 }}
-        animate={reduce ? {} : { y: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.7 }}
-        className="rounded-[26px] border border-white/10 bg-ink p-1.5 shadow-[0_24px_60px_-18px_rgba(0,0,0,0.85)]"
+        style={{ rotate: 1.5 }}
+        animate={reduce ? {} : { y: [0, -5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.7 }}
+        className="relative rounded-[30px] border border-white/[0.14] bg-ink p-[5px] shadow-[0_30px_72px_-20px_rgba(0,0,0,0.9)]"
       >
-        <div className="overflow-hidden rounded-[20px] border border-white/5 bg-gradient-to-b from-ink-800 to-ink">
-          {/* notch */}
-          <div className="mx-auto mt-1.5 h-1 w-8 rounded-full bg-white/15" />
-          <div className="space-y-2 p-2.5 pt-3">
+        {/* Screen — tall smartphone aspect */}
+        <div className="relative flex aspect-[9/19] flex-col overflow-hidden rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-ink-800 to-ink">
+          {/* Speaker + front camera */}
+          <div className="absolute left-1/2 top-1.5 z-10 flex -translate-x-1/2 items-center gap-1.5">
+            <span className="h-1 w-8 rounded-full bg-white/20" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/25 ring-1 ring-white/10" />
+          </div>
+
+          <div className="flex flex-1 flex-col gap-2 p-2.5 pt-5">
             {/* header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-[3px] bg-electric" />
+                <span className="h-2 w-2 rounded-[4px] bg-electric" />
                 <span className="h-1.5 w-6 rounded bg-white/25" />
               </div>
               <span className="h-1.5 w-3 rounded bg-white/12" />
             </div>
             {/* headline */}
-            <div className="space-y-1 pt-1">
+            <div className="space-y-1 pt-0.5">
               <div className="h-1.5 w-full rounded bg-chalk/80" />
+              <div className="h-1.5 w-5/6 rounded bg-chalk/80" />
               <div className="h-1.5 w-3/5 rounded bg-electric" />
             </div>
             {/* text */}
@@ -170,15 +181,17 @@ function MobilePhone({ reduce }) {
               <div className="h-1 w-full rounded bg-white/12" />
               <div className="h-1 w-4/5 rounded bg-white/12" />
             </div>
-            {/* button */}
-            <div className="h-4 w-14 rounded-full bg-electric shadow-[0_6px_16px_-6px_rgba(91,140,255,0.7)]" />
+            {/* CTA */}
+            <div className="h-4 w-16 rounded-full bg-electric shadow-[0_6px_16px_-6px_rgba(91,140,255,0.7)]" />
             {/* card */}
             <div className="h-9 rounded-lg border border-white/10 bg-white/[0.03]" />
-            {/* grid */}
+            {/* stacked blocks */}
             <div className="grid grid-cols-2 gap-1.5">
-              <div className="h-6 rounded-md border border-white/10 bg-white/[0.02]" />
-              <div className="h-6 rounded-md border border-white/10 bg-white/[0.02]" />
+              <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
+              <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
             </div>
+            {/* Home indicator */}
+            <div className="mx-auto mt-auto h-1 w-10 rounded-full bg-white/25" />
           </div>
         </div>
       </motion.div>

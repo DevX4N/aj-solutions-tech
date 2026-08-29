@@ -6,14 +6,14 @@ for (const [name,w] of [['mphone-390',390],['mphone-360',360]]) {
   await page.goto('http://localhost:5173',{waitUntil:'networkidle'})
   await page.evaluate(()=>document.fonts?.ready); await page.waitForTimeout(400)
   const info = await page.evaluate(()=>{
-    const ph=[...document.querySelectorAll('#inicio div')].find(d=>(d.className||'').includes('rounded-[26px]'))
+    const ph=[...document.querySelectorAll('#inicio div')].find(d=>(d.className||'').includes('rounded-[30px]'))
     ph?.scrollIntoView({block:'center'})
     return null
   })
   await page.waitForTimeout(300)
   await page.screenshot({path:`.impeccable/review/${name}.png`})
   const clip = await page.evaluate(()=>{
-    const ph=[...document.querySelectorAll('#inicio div')].find(d=>(d.className||'').includes('rounded-[26px]'))
+    const ph=[...document.querySelectorAll('#inicio div')].find(d=>(d.className||'').includes('rounded-[30px]'))
     const r=ph.getBoundingClientRect()
     return {phoneLeft:Math.round(r.left), phoneRight:Math.round(r.right), vw:window.innerWidth, cutRight:r.right>window.innerWidth, cutLeft:r.left<0}
   })
