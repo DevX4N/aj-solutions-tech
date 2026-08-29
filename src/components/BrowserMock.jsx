@@ -125,7 +125,64 @@ export default function BrowserMock({ reduce }) {
           </div>
         </div>
       </motion.div>
+
+      {/* Overlapping mobile mockup — same site, responsive version */}
+      <MobilePhone reduce={reduce} />
     </div>
+  )
+}
+
+// Phone mockup overlapping the desktop browser's bottom-right corner: the same
+// site rendered mobile-first. Enters from the right with a fade, then floats.
+function MobilePhone({ reduce }) {
+  return (
+    <motion.div
+      initial={reduce ? {} : { opacity: 0, x: 44 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.75, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+      className="absolute -bottom-4 -right-2 z-20 w-[104px] sm:-bottom-6 sm:-right-4 sm:w-[128px] lg:-bottom-12 lg:-right-8 lg:w-[150px]"
+    >
+      <motion.div
+        style={{ rotate: 2.5 }}
+        animate={reduce ? {} : { y: [0, -8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.7 }}
+        className="rounded-[26px] border border-white/10 bg-ink p-1.5 shadow-[0_24px_60px_-18px_rgba(0,0,0,0.85)]"
+      >
+        <div className="overflow-hidden rounded-[20px] border border-white/5 bg-gradient-to-b from-ink-800 to-ink">
+          {/* notch */}
+          <div className="mx-auto mt-1.5 h-1 w-8 rounded-full bg-white/15" />
+          <div className="space-y-2 p-2.5 pt-3">
+            {/* header */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-[3px] bg-electric" />
+                <span className="h-1.5 w-6 rounded bg-white/25" />
+              </div>
+              <span className="h-1.5 w-3 rounded bg-white/12" />
+            </div>
+            {/* headline */}
+            <div className="space-y-1 pt-1">
+              <div className="h-1.5 w-full rounded bg-chalk/80" />
+              <div className="h-1.5 w-3/5 rounded bg-electric" />
+            </div>
+            {/* text */}
+            <div className="space-y-1">
+              <div className="h-1 w-full rounded bg-white/12" />
+              <div className="h-1 w-4/5 rounded bg-white/12" />
+            </div>
+            {/* button */}
+            <div className="h-4 w-14 rounded-full bg-electric shadow-[0_6px_16px_-6px_rgba(91,140,255,0.7)]" />
+            {/* card */}
+            <div className="h-9 rounded-lg border border-white/10 bg-white/[0.03]" />
+            {/* grid */}
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="h-6 rounded-md border border-white/10 bg-white/[0.02]" />
+              <div className="h-6 rounded-md border border-white/10 bg-white/[0.02]" />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
