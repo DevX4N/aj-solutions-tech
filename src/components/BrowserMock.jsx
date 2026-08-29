@@ -190,6 +190,21 @@ function MobilePhone({ reduce }) {
               <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
               <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
             </div>
+            {/* detail / caption */}
+            <div className="space-y-1 pt-0.5">
+              <div className="h-1 w-3/4 rounded bg-white/12" />
+              <div className="h-1 w-1/2 rounded bg-white/[0.08]" />
+            </div>
+            {/* list row — mirrors the desktop mini-cards */}
+            <div className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.02] p-1.5">
+              <span className="h-3 w-3 shrink-0 rounded bg-electric/30" />
+              <div className="flex-1 space-y-1">
+                <div className="h-1 w-2/3 rounded bg-white/15" />
+                <div className="h-1 w-1/2 rounded bg-white/[0.08]" />
+              </div>
+            </div>
+            {/* secondary CTA */}
+            <div className="h-3.5 w-full rounded-full border border-white/10 bg-white/[0.03]" />
             {/* Home indicator */}
             <div className="mx-auto mt-auto h-1 w-10 rounded-full bg-white/25" />
           </div>
