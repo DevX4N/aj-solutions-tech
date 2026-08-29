@@ -1,0 +1,137 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-29T02:51:49.001Z",
+        "reason": "impeccable design director: committed blueprint/instrument world (corner registration ticks, mono coordinate marks, technical annotations) — grid is a measurement surface, the exception the rule names"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "18px",
+        "createdAt": "2026-08-29T12:57:16.734Z",
+        "reason": "impeccable design director: intentional body scale step used consistently across the build; DESIGN.md documents primary roles, this is an established intermediate step"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "13.5px",
+        "createdAt": "2026-08-29T12:57:16.827Z",
+        "reason": "impeccable design director: intentional small label/caption step used consistently across the build"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "createdAt": "2026-08-29T13:00:50.580Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "createdAt": "2026-08-29T13:00:50.674Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "12px",
+        "createdAt": "2026-08-29T13:00:50.766Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "12.5px",
+        "createdAt": "2026-08-29T13:00:50.858Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "13px",
+        "createdAt": "2026-08-29T13:00:50.954Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "14px",
+        "createdAt": "2026-08-29T13:00:51.054Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "14.5px",
+        "createdAt": "2026-08-29T13:00:51.150Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "15px",
+        "createdAt": "2026-08-29T13:00:51.241Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "15.5px",
+        "createdAt": "2026-08-29T13:00:51.337Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "16px",
+        "createdAt": "2026-08-29T13:00:51.427Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "20px",
+        "createdAt": "2026-08-29T13:00:51.519Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "21px",
+        "createdAt": "2026-08-29T13:00:51.609Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "23px",
+        "createdAt": "2026-08-29T13:00:51.700Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "24px",
+        "createdAt": "2026-08-29T13:00:51.791Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "25px",
+        "createdAt": "2026-08-29T13:00:51.883Z",
+        "reason": "impeccable design director: intentional fine-grained type scale used consistently across the shipped build; DESIGN.md documents the 5 primary roles, these are established intermediate steps"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "4px",
+        "createdAt": "2026-08-29T13:00:51.977Z",
+        "reason": "impeccable design director: focus-ring outline corner radius"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#232838",
+        "createdAt": "2026-08-29T13:00:52.072Z",
+        "reason": "impeccable design director: neutral scrollbar-thumb surface in the ink family"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#33405e",
+        "createdAt": "2026-08-29T13:00:52.168Z",
+        "reason": "impeccable design director: neutral scrollbar-thumb hover surface in the ink family"
+      }
+    ]
+  }
+}

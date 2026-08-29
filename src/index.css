@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset for the fixed header when jumping to #anchors */
+    scroll-padding-top: 96px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-ink text-chalk font-sans antialiased;
+    background-color: #08090D;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Browser surfaces themed from the palette — not left to defaults */
+  ::selection {
+    background: rgba(91, 140, 255, 0.28);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7AA2FF;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08090D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #232838;
+    border: 3px solid #08090D;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #33405e;
+  }
+
+  * {
+    scrollbar-color: #232838 #08090D;
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: #7AA2FF;
+  }
+}
+
+@layer components {
+  /* Fine blueprint grid — the studio's technical drawing surface */
+  .bp-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .bp-grid-fine {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .hairline {
+    border-color: rgba(255, 255, 255, 0.09);
+  }
+
+  .mono-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-chalk-faint;
+  }
+
+  /* Primary action — a solid, physical control, not a glowing pill */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-electric px-6 py-3
+           font-sans text-[15px] font-semibold text-ink transition-all duration-300 ease-out;
+    box-shadow: 0 14px 34px -14px rgba(91, 140, 255, 0.65);
+  }
+  .btn-primary:hover {
+    @apply bg-electric-bright;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 46px -14px rgba(91, 140, 255, 0.8);
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full border border-line
+           bg-white/[0.02] px-6 py-3 font-sans text-[15px] font-semibold text-chalk
+           transition-all duration-300 ease-out;
+  }
+  .btn-ghost:hover {
+    @apply border-white/25 bg-white/[0.05];
+    transform: translateY(-2px);
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-12;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Outlined display type — emphasis without gradient text */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.4px rgba(243, 245, 251, 0.5);
+    text-stroke: 1.4px rgba(243, 245, 251, 0.5);
+  }
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+}

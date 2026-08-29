@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-29T12:00:00Z",
+  "title": "Design System: AJ Solutions Tech",
+  "extensions": {
+    "colorMeta": {
+      "electric": { "role": "primary", "displayName": "Electric Blue", "canonical": "#5B8CFF", "tonalRamp": ["#0B1533", "#132455", "#1C3A8C", "#2C55C9", "#3B5BE0", "#5B8CFF", "#7AA2FF", "#B7CCFF"] },
+      "violet": { "role": "secondary", "displayName": "Signal Violet", "canonical": "#8B6CFF", "tonalRamp": ["#160E33", "#251655", "#3A2585", "#5A3FC9", "#7355E6", "#8B6CFF", "#AD97FF", "#D6C9FF"] },
+      "cyan": { "role": "tertiary", "displayName": "Instrument Cyan", "canonical": "#43E6FF", "tonalRamp": ["#062A33", "#0A4455", "#0F6C85", "#149DC0", "#1CC4E6", "#43E6FF", "#7FF0FF", "#C2F8FF"] },
+      "ink": { "role": "neutral", "displayName": "Graphite Ink", "canonical": "#08090D", "tonalRamp": ["#08090D", "#0A0B10", "#0E1017", "#12141C", "#171A24", "#2A2F3D", "#4A5163", "#7C8296"] },
+      "chalk": { "role": "neutral", "displayName": "Chalk Off-White", "canonical": "#F3F5FB", "tonalRamp": ["#22252E", "#3A3F4B", "#565C6B", "#7C8296", "#9BA2B4", "#B7BECF", "#DDE1EB", "#F3F5FB"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and section headlines; oversized editorial Bricolage Grotesque." },
+      "label": { "displayName": "Mono Label", "purpose": "Coordinates, spec labels, meta and measurement only." }
+    },
+    "shadows": [
+      { "name": "lift", "value": "0 24px 60px -20px rgba(0,0,0,0.7), 0 8px 20px -12px rgba(0,0,0,0.6)", "purpose": "Floating panels: hero mockup, form, mobile menu." },
+      { "name": "accent-lift", "value": "0 14px 34px -14px rgba(91,140,255,0.65)", "purpose": "Primary button at rest; the only shadow that carries accent color." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Standard entrance/state easing for reveals, hovers, and accordions." },
+      { "name": "reveal", "value": "opacity + translateY(22px) over 0.7s", "purpose": "One authored entrance per section; disabled under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single action control; electric fill, directional accent shadow, lifts on hover.",
+      "html": "<button class=\"ds-btn-primary\">Solicitar orçamento</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #5B8CFF; color: #08090D; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 600; padding: 12px 24px; border: none; border-radius: 9999px; box-shadow: 0 14px 34px -14px rgba(91,140,255,0.65); transition: background .3s cubic-bezier(0.16,1,0.3,1), transform .3s, box-shadow .3s; cursor: pointer; } .ds-btn-primary:hover { background: #7AA2FF; transform: translateY(-2px); box-shadow: 0 22px 46px -14px rgba(91,140,255,0.8); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action; hairline border on near-transparent fill, lifts on hover.",
+      "html": "<button class=\"ds-btn-ghost\">Ver projetos</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.02); color: #F3F5FB; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; font-weight: 600; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.09); border-radius: 9999px; transition: border-color .3s, background .3s, transform .3s; cursor: pointer; } .ds-btn-ghost:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); transform: translateY(-2px); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Form input on graphite ground; accent border on focus, mono label above.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">E-mail *</span><input class=\"ds-input\" placeholder=\"voce@empresa.com.br\" /></label>",
+      "css": ".ds-field { display: block; } .ds-field-label { display: block; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #B7BECF; } .ds-input { width: 100%; background: #08090D; color: #F3F5FB; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; caret-color: #7AA2FF; transition: border-color .2s; } .ds-input::placeholder { color: #7C8296; } .ds-input:hover { border-color: rgba(255,255,255,0.2); } .ds-input:focus-visible { outline: none; border-color: #5B8CFF; }"
+    },
+    {
+      "name": "Surface Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Raised content surface; tonal elevation, hairline border tightening to accent on hover.",
+      "html": "<article class=\"ds-card\"><span class=\"ds-card-meta\">CONVERSÃO</span><h3 class=\"ds-card-title\">Landing Pages</h3><p class=\"ds-card-body\">Páginas pensadas para campanhas e captação de leads.</p></article>",
+      "css": ".ds-card { position: relative; background: rgba(14,16,23,0.65); border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 28px; transition: transform .3s, border-color .3s; } .ds-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); } .ds-card-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.24em; color: #7C8296; } .ds-card-title { margin: 16px 0 8px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #F3F5FB; } .ds-card-body { font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; line-height: 1.6; color: #B7BECF; }"
+    },
+    {
+      "name": "Blueprint Coordinate Mark",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Per-section wayfinding tick: mono coordinate + measured rule, in place of an eyebrow label.",
+      "html": "<div class=\"ds-coord\"><span class=\"ds-coord-id\">/ 02</span><span class=\"ds-coord-rule\"></span></div>",
+      "css": ".ds-coord { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; } .ds-coord-id { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: rgba(122,162,255,0.9); } .ds-coord-rule { height: 1px; width: 56px; background: linear-gradient(to right, rgba(255,255,255,0.09), transparent); }"
+    },
+    {
+      "name": "Header Nav Link",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Top-nav link; Chalk-dim to Chalk on hover, pill hit area.",
+      "html": "<a class=\"ds-nav-link\" href=\"#servicos\">Serviços</a>",
+      "css": ".ds-nav-link { display: inline-block; padding: 8px 14px; border-radius: 9999px; font-family: 'Hanken Grotesk', sans-serif; font-size: 14px; font-weight: 500; color: #B7BECF; text-decoration: none; transition: color .2s; } .ds-nav-link:hover { color: #F3F5FB; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Estúdio de Engenharia Digital",
+    "overview": "The interface behaves like a precision instrument panel viewed under low light: a graphite drafting surface marked with hairline technical grids, coordinate ticks, corner registration marks, and monospace annotations, with one electric-blue signal that carries every action and highlight. The page argues by being the artifact — an agency proving competence through the craft of its own site. Density alternates deliberately between oversized editorial headlines with generous negative space and compact technical readouts. Glow is controlled and directional, never an ambient neon wash.",
+    "keyCharacteristics": [
+      "Graphite near-black ground with a single committed electric-blue accent.",
+      "Hairline blueprint grids and mono coordinates as load-bearing material, not decoration.",
+      "Editorial display type (Bricolage Grotesque) against a clean workhorse body (Hanken Grotesk).",
+      "One authored entrance motion per section; controlled directional glow."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Electric blue is the only action color. If more than a small fraction of a screen carries the accent, it stops reading as signal — violet and cyan exist so atmosphere never has to borrow the action color.", "section": "colors" },
+      { "name": "The Off-White Rule", "body": "Text is Chalk (#F3F5FB), never pure white; borders are the single line value, never a heavier stroke to force emphasis.", "section": "colors" },
+      { "name": "The Mono-is-Measurement Rule", "body": "JetBrains Mono appears only for coordinates, spec labels, data, and measurement — never as a costume to make prose look technical.", "section": "typography" },
+      { "name": "The Directional-Glow Rule", "body": "Glow is always a shadow with offset and blur, tied to a real object. Ambient page glow is a low-opacity blurred field behind the grid, never an edge halo.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the accent scarce (#5B8CFF) — actions, one highlighted word, ticks, gauges.",
+      "Do signal elevation tonally first (Ink to Ink-800/700/600) and add Lift only for genuinely floating panels.",
+      "Do use JetBrains Mono strictly for coordinates, labels, data, and measurement.",
+      "Do give each section one authored entrance (exponential ease-out) with a reduced-motion fallback.",
+      "Do vary composition — editorial columns, bento spans, alternating rows — instead of a uniform card grid."
+    ],
+    "donts": [
+      "Don't use gradient text; emphasize with weight, scale, or the accent.",
+      "Don't place an eyebrow/kicker above a heading — the blueprint coordinate tick is the only pre-heading mark.",
+      "Don't thicken borders past the single line hairline, and never use a colored side-stripe.",
+      "Don't let glow become ambient neon.",
+      "Don't introduce a second action color; violet and cyan stay atmospheric."
+    ]
+  }
+}

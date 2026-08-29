@@ -1,0 +1,21 @@
+# Dependências
+node_modules/
+
+# Build de produção
+dist/
+
+# Arquivos Markdown (não versionar, por solicitação)
+*.md
+
+# Impeccable — cache e artefatos locais de QA (screenshots, cache do hook, config local)
+.impeccable/review/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
+
+# Logs / variáveis de ambiente / arquivos de SO
+*.log
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+Thumbs.db
