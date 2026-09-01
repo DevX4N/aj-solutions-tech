@@ -201,7 +201,10 @@ function MobilePhone() {
                 <span className="rounded-full bg-electric py-[6px] text-center text-[8.5px] font-semibold leading-none text-white shadow-[0_8px_18px_-8px_rgba(91,140,255,0.9)]">
                   Solicitar orçamento
                 </span>
-                <span className="rounded-full border border-white/20 py-[6px] text-center text-[8.5px] font-medium leading-none text-white">
+                {/* On the real mobile viewport the phone mockup is shortest —
+                    hide this secondary button there so the content clears the
+                    device's gesture bar. Shown from sm+ where there's room. */}
+                <span className="hidden rounded-full border border-white/20 py-[6px] text-center text-[8.5px] font-medium leading-none text-white sm:block">
                   Ver projetos
                 </span>
               </div>
