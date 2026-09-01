@@ -13,8 +13,10 @@ const EMPTY = {
   mensagem: '',
 }
 
-// TODO: Substitua pelo seu endpoint do Formspree (ex: https://formspree.io/f/abc123xyz)
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeyeqzy'
+// Web3Forms — os envios chegam no e-mail (Titan) cadastrado ao gerar a key.
+// >>> COLE AQUI a sua access key gerada em https://web3forms.com <<<
+const WEB3FORMS_ACCESS_KEY = '49481621-b323-45a8-9bf5-a33d922b758b'
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
@@ -71,13 +73,24 @@ export default function Contact() {
       return
     }
     setStatus('loading')
+    // Honeypot: campo invisível preenchido apenas por bots. Se veio marcado, o
+    // Web3Forms descarta o envio ao receber "botcheck".
+    const botcheck = ev.target.botcheck?.checked ?? false
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Novo contato pelo site — ${form.nome || 'sem nome'}`,
+          from_name: 'Site AJ Solutions Tech',
+          botcheck,
+          // O Web3Forms usa o campo "email" como reply-to automaticamente.
+          ...form,
+        }),
       })
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.success) {
         setStatus('success')
         setForm(EMPTY)
       } else {
@@ -137,6 +150,18 @@ export default function Contact() {
               <SuccessState onReset={() => setStatus('idle')} />
             ) : (
               <form onSubmit={submit} noValidate className="space-y-5">
+                {/* Honeypot anti-spam do Web3Forms — invisível para humanos.
+                    Bots preenchem todos os campos do HTML; se "botcheck" vier
+                    marcado, o Web3Forms descarta o envio silenciosamente. */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                  style={{ display: 'none' }}
+                />
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Nome" id="nome" value={form.nome} onChange={set('nome')} error={errors.nome} placeholder="Seu nome" required maxLength={100} />
                   <Field label="Empresa" id="empresa" value={form.empresa} onChange={set('empresa')} placeholder="Opcional" maxLength={100} />
