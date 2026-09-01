@@ -209,8 +209,11 @@ function MobilePhone() {
                 </span>
               </div>
 
-              {/* Two priority services — larger, high-contrast cards */}
-              <div className="mt-2.5 flex flex-col gap-1.5">
+              {/* Two priority services — larger, high-contrast cards. Hidden on
+                  the real mobile viewport (below sm), where the mini-phone is
+                  shortest: dropping them lets the content end above the device's
+                  gesture bar instead of overflowing and clipping it. */}
+              <div className="mt-2.5 hidden flex-col gap-1.5 sm:flex">
                 {[
                   { t: 'Landing Pages', m: 'Conversão' },
                   { t: 'Sites Institucionais', m: 'Presença' },
