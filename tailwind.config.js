@@ -51,14 +51,9 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
-        'grid-pan': {
-          '0%': { backgroundPosition: '0 0' },
-          '100%': { backgroundPosition: '40px 40px' },
-        },
       },
       animation: {
         marquee: 'marquee 38s linear infinite',
-        'grid-pan': 'grid-pan 22s linear infinite',
       },
     },
   },

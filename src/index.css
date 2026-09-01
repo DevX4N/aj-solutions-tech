@@ -92,6 +92,29 @@
     background-size: 32px 32px;
   }
 
+  /* Panning fine grid — animates background-position, which repaints
+     continuously (not GPU-composited). Restricted to desktop fine pointers so
+     touch devices don't pay that idle repaint cost; disabled under
+     reduced-motion. On mobile the grid stays as a crisp static layer. */
+  @media (hover: hover) and (pointer: fine) {
+    .grid-pan-fine {
+      animation: grid-pan-shift 22s linear infinite;
+    }
+  }
+  @keyframes grid-pan-shift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grid-pan-fine {
+      animation: none;
+    }
+  }
+
   .hairline {
     border-color: rgba(255, 255, 255, 0.09);
   }

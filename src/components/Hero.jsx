@@ -18,12 +18,16 @@ export default function Hero() {
   const ref = useRef(null)
   const [light, setLight] = useState({ x: 50, y: 30 })
 
-  // Radial light field follows the cursor across the hero.
+  // Radial light field follows the cursor across the hero. Desktop fine
+  // pointers only — on touch it would re-render + repaint a full-hero gradient
+  // on every scroll drag for no visible benefit.
   useEffect(() => {
     if (reduce) return
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
     const el = ref.current
     if (!el) return
     const onMove = (e) => {
+      if (e.pointerType === 'touch') return
       const r = el.getBoundingClientRect()
       setLight({
         x: ((e.clientX - r.left) / r.width) * 100,
@@ -49,7 +53,7 @@ export default function Hero() {
           WebkitMaskImage: 'radial-gradient(120% 80% at 50% 0%, black 20%, transparent 75%)',
         }}
       >
-        <div className="absolute inset-0 bp-grid-fine animate-grid-pan" />
+        <div className="absolute inset-0 bp-grid-fine grid-pan-fine" />
       </div>
 
       {/* Cursor-reactive light field */}
