@@ -13,24 +13,52 @@ const EMPTY = {
   mensagem: '',
 }
 
+// TODO: Substitua pelo seu endpoint do Formspree (ex: https://formspree.io/f/abc123xyz)
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeyeqzy'
+
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const set = (k) => (e) => {
-    setForm((f) => ({ ...f, [k]: e.target.value }))
+    let value = e.target.value
+    if (k === 'whatsapp') {
+      const digits = value.replace(/\D/g, '').slice(0, 11)
+      if (digits.length >= 2) value = `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+      if (digits.length >= 7) value = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+    }
+    setForm((f) => ({ ...f, [k]: value }))
     if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }))
   }
 
   const validate = () => {
     const e = {}
-    if (!form.nome.trim()) e.nome = 'Informe seu nome.'
-    if (!form.email.trim()) e.email = 'Informe seu e-mail.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'E-mail inválido.'
+    const nome = form.nome.trim()
+    if (!nome) e.nome = 'Informe seu nome.'
+    else if (nome.length < 2) e.nome = 'Nome deve ter pelo menos 2 caracteres.'
+    else if (nome.length > 100) e.nome = 'Nome deve ter no máximo 100 caracteres.'
+
+    const email = form.email.trim()
+    if (!email) e.email = 'Informe seu e-mail.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'E-mail inválido.'
+    else if (email.length > 254) e.email = 'E-mail muito longo.'
+
+    const whatsapp = form.whatsapp.replace(/\D/g, '')
     if (!form.whatsapp.trim()) e.whatsapp = 'Informe um WhatsApp para contato.'
+    else if (whatsapp.length < 10) e.whatsapp = 'WhatsApp inválido. Use (00) 00000-0000.'
+    else if (whatsapp.length > 11) e.whatsapp = 'WhatsApp inválido. Use (00) 00000-0000.'
+    else if (!/^\d{10,11}$/.test(whatsapp)) e.whatsapp = 'WhatsApp inválido. Use apenas números.'
+
+    if (form.empresa.trim().length > 100) e.empresa = 'Nome da empresa deve ter no máximo 100 caracteres.'
+
     if (!form.tipo) e.tipo = 'Selecione o tipo de projeto.'
-    if (!form.mensagem.trim()) e.mensagem = 'Conte um pouco sobre o projeto.'
+
+    const mensagem = form.mensagem.trim()
+    if (!mensagem) e.mensagem = 'Conte um pouco sobre o projeto.'
+    else if (mensagem.length < 20) e.mensagem = 'Mensagem deve ter pelo menos 20 caracteres.'
+    else if (mensagem.length > 2000) e.mensagem = 'Mensagem deve ter no máximo 2000 caracteres.'
+
     return e
   }
 
@@ -44,12 +72,17 @@ export default function Contact() {
     }
     setStatus('loading')
     try {
-      // >>> INTEGRAÇÃO PENDENTE <<<
-      // Sem backend definido. Troque este trecho pelo envio real
-      // (e-mail, API, webhook do WhatsApp Business, etc.).
-      await new Promise((res) => setTimeout(res, 1400))
-      setStatus('success')
-      setForm(EMPTY)
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setForm(EMPTY)
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }
@@ -105,12 +138,12 @@ export default function Contact() {
             ) : (
               <form onSubmit={submit} noValidate className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <Field label="Nome" id="nome" value={form.nome} onChange={set('nome')} error={errors.nome} placeholder="Seu nome" required />
-                  <Field label="Empresa" id="empresa" value={form.empresa} onChange={set('empresa')} placeholder="Opcional" />
+                  <Field label="Nome" id="nome" value={form.nome} onChange={set('nome')} error={errors.nome} placeholder="Seu nome" required maxLength={100} />
+                  <Field label="Empresa" id="empresa" value={form.empresa} onChange={set('empresa')} placeholder="Opcional" maxLength={100} />
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <Field label="E-mail" id="email" type="email" value={form.email} onChange={set('email')} error={errors.email} placeholder="voce@empresa.com.br" required />
-                  <Field label="WhatsApp" id="whatsapp" value={form.whatsapp} onChange={set('whatsapp')} error={errors.whatsapp} placeholder="(00) 00000-0000" required />
+                  <Field label="E-mail" id="email" type="email" value={form.email} onChange={set('email')} error={errors.email} placeholder="voce@empresa.com.br" required maxLength={254} />
+                  <Field label="WhatsApp" id="whatsapp" value={form.whatsapp} onChange={set('whatsapp')} error={errors.whatsapp} placeholder="(00) 00000-0000" required maxLength={15} />
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <SelectField label="Tipo de projeto" id="tipo" value={form.tipo} onChange={set('tipo')} error={errors.tipo} options={projectTypes} required />
@@ -125,10 +158,14 @@ export default function Contact() {
                     value={form.mensagem}
                     onChange={set('mensagem')}
                     placeholder="Descreva rapidamente sua ideia, objetivo e prazo."
+                    maxLength={2000}
                     className={`w-full resize-none rounded-xl border bg-ink px-4 py-3 text-[15px] text-chalk placeholder:text-chalk-faint transition-colors duration-200 hover:border-white/20 focus:border-electric focus:outline-none focus:ring-0 ${
                       errors.mensagem ? 'border-red-400/70' : 'border-line'
                     }`}
                   />
+                  <p className="mt-1.5 text-right font-mono text-[11px] text-chalk-faint">
+                    {form.mensagem.length}/2000
+                  </p>
                   <FieldError error={errors.mensagem} />
                 </div>
 
@@ -176,7 +213,7 @@ function FieldLabel({ children, htmlFor, required }) {
   )
 }
 
-function Field({ label, id, value, onChange, error, placeholder, type = 'text', required }) {
+function Field({ label, id, value, onChange, error, placeholder, type = 'text', required, maxLength }) {
   return (
     <div>
       <FieldLabel htmlFor={id} required={required}>{label}</FieldLabel>
@@ -186,6 +223,7 @@ function Field({ label, id, value, onChange, error, placeholder, type = 'text', 
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        maxLength={maxLength}
         className={`w-full rounded-xl border bg-ink px-4 py-3 text-[15px] text-chalk placeholder:text-chalk-faint transition-colors duration-200 hover:border-white/20 focus:border-electric focus:outline-none focus:ring-0 ${
           error ? 'border-red-400/70' : 'border-line'
         }`}

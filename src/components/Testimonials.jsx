@@ -59,7 +59,6 @@ export default function Testimonials() {
                   </div>
                   <div>
                     <div className="font-semibold text-chalk">{t.name}</div>
-                    <div className="text-[13.5px] text-chalk-faint">{t.company}</div>
                   </div>
                 </footer>
               </motion.blockquote>
@@ -103,11 +102,6 @@ export default function Testimonials() {
             </div>
           </div>
         </div>
-
-        {/* honest placeholder note */}
-        <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-chalk-faint">
-          Depoimentos ilustrativos — substituir por relatos reais de clientes
-        </p>
       </div>
     </section>
   )

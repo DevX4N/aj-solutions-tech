@@ -200,22 +200,19 @@ export const testimonials = [
   {
     quote:
       'A AJ Solutions Tech conseguiu transformar nossa ideia em um site muito mais profissional do que imaginávamos.',
-    name: 'Cliente Exemplo',
-    company: 'Empresa Exemplo',
+    name: 'Rafael Almeida',
     placeholder: true,
   },
   {
     quote:
       'O processo foi claro do começo ao fim. Recebemos um site rápido, bonito e que realmente traz contatos.',
-    name: 'Cliente Exemplo',
-    company: 'Empresa Exemplo',
+    name: 'Juliana Costa',
     placeholder: true,
   },
   {
     quote:
       'Nosso site antigo não representava a empresa. O redesign mudou completamente a percepção da marca.',
-    name: 'Cliente Exemplo',
-    company: 'Empresa Exemplo',
+    name: 'Marcos Ferreira',
     placeholder: true,
   },
 ]

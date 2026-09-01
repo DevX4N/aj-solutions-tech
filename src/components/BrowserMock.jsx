@@ -70,11 +70,16 @@ export default function BrowserMock({ reduce }) {
         </div>
       </motion.div>
 
-      {/* Floating performance gauge instrument */}
+      {/* Floating performance gauge instrument — drifts on its own 7s cadence
+          for depth parallax against the phone (8s) and tag (9s). */}
       <motion.div
-        initial={reduce ? {} : { opacity: 0, scale: 0.9, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1 }}
+        initial={reduce ? {} : { opacity: 0, scale: 0.9 }}
+        animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, -6, 0] }}
+        transition={{
+          opacity: { duration: 0.7, delay: 1 },
+          scale: { duration: 0.7, delay: 1 },
+          y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1.8 },
+        }}
         className="absolute -left-6 bottom-8 hidden rounded-xl border border-line bg-ink-700/95 p-3.5 shadow-lift backdrop-blur-md sm:block"
       >
         <div className="flex items-center gap-3">
@@ -110,11 +115,16 @@ export default function BrowserMock({ reduce }) {
         </div>
       </motion.div>
 
-      {/* Floating conversion tag */}
+      {/* Floating conversion tag — slower 9s cadence, opposite phase to the
+          gauge, so the composition breathes with real depth. */}
       <motion.div
-        initial={reduce ? {} : { opacity: 0, scale: 0.9, y: -10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.2 }}
+        initial={reduce ? {} : { opacity: 0, scale: 0.9 }}
+        animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, 7, 0] }}
+        transition={{
+          opacity: { duration: 0.7, delay: 1.2 },
+          scale: { duration: 0.7, delay: 1.2 },
+          y: { duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 },
+        }}
         className="absolute -right-4 top-10 hidden items-center gap-2 rounded-xl border border-line bg-ink-700/95 px-3.5 py-2.5 shadow-lift backdrop-blur-md sm:flex"
       >
         <TrendingUp className="h-4 w-4 text-electric-bright" strokeWidth={2} />
@@ -126,91 +136,110 @@ export default function BrowserMock({ reduce }) {
         </div>
       </motion.div>
 
-      {/* Overlapping mobile mockup — same site, responsive version */}
-      <MobilePhone reduce={reduce} />
+      {/* Overlapping mobile mockup — same site, responsive version (static) */}
+      <MobilePhone />
     </div>
   )
 }
 
 // Phone mockup overlapping the desktop browser's bottom-right corner: the same
-// site rendered mobile-first, with unmistakable device signals (speaker + front
-// camera, tall body, home indicator). Enters from the right, then floats.
-function MobilePhone({ reduce }) {
+// site rendered mobile-first. FULLY STATIC — a fixed screenshot of the mobile
+// site, no motion of any kind (no entrance, float, parallax, sheen or scroll).
+// Content is intentionally large and high-contrast so it reads at a glance.
+function MobilePhone() {
   return (
-    <motion.div
-      initial={reduce ? {} : { opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute bottom-1 right-1 z-20 w-[116px] sm:-bottom-9 sm:-right-2 sm:w-[140px] lg:-bottom-[72px] lg:-right-4 lg:w-[166px]"
-    >
-      {/* Discreet blue glow + soft dark backdrop to lift the phone off the grid */}
+    <div className="absolute bottom-1 right-1 z-20 w-[116px] sm:-bottom-9 sm:-right-2 sm:w-[140px] lg:-bottom-[72px] lg:-right-4 lg:w-[166px]">
+      {/* Discreet blue glow + soft dark backdrop to lift the phone off the grid.
+          These sit BEHIND the device (-z-10) and never touch the screen. */}
       <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[44px] bg-electric/10 blur-xl" />
       <div className="pointer-events-none absolute inset-2 -z-10 rounded-[40px] bg-ink/50 blur-lg" />
 
-      <motion.div
+      {/* Device — static, no animation */}
+      <div
         style={{ rotate: 1.5 }}
-        animate={reduce ? {} : { y: [0, -5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.7 }}
         className="relative rounded-[30px] border border-white/[0.14] bg-ink p-[5px] shadow-[0_30px_72px_-20px_rgba(0,0,0,0.9)]"
       >
-        {/* Screen — tall smartphone aspect */}
+        {/* Screen — tall smartphone aspect. Sharp, no blur, no overlay. */}
         <div className="relative flex aspect-[9/19] flex-col overflow-hidden rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-ink-800 to-ink">
           {/* Speaker + front camera */}
-          <div className="absolute left-1/2 top-1.5 z-10 flex -translate-x-1/2 items-center gap-1.5">
-            <span className="h-1 w-8 rounded-full bg-white/20" />
+          <div className="absolute left-1/2 top-2 z-20 flex -translate-x-1/2 items-center gap-1.5">
+            <span className="h-1 w-9 rounded-full bg-white/20" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/25 ring-1 ring-white/10" />
           </div>
 
-          <div className="flex flex-1 flex-col gap-2 p-2.5 pt-5">
-            {/* header */}
-            <div className="flex items-center justify-between">
+          {/* Faint blueprint texture — mirrors the desktop render (static, subtle) */}
+          <div className="bp-grid-fine pointer-events-none absolute inset-0 opacity-25" />
+
+          <div className="relative flex flex-1 flex-col px-3 pt-[22px]">
+            {/* Compact mobile header — brand mark + wordmark + menu */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
               <div className="flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-[4px] bg-electric" />
-                <span className="h-1.5 w-6 rounded bg-white/25" />
+                <span className="grid h-4 w-4 place-items-center rounded-[4px] bg-gradient-to-br from-electric to-violet text-[7px] font-bold leading-none text-white">
+                  AJ
+                </span>
+                <span className="text-[8.5px] font-semibold leading-none tracking-tight text-white">
+                  AJ Solutions
+                </span>
               </div>
-              <span className="h-1.5 w-3 rounded bg-white/12" />
-            </div>
-            {/* headline */}
-            <div className="space-y-1 pt-0.5">
-              <div className="h-1.5 w-full rounded bg-chalk/80" />
-              <div className="h-1.5 w-5/6 rounded bg-chalk/80" />
-              <div className="h-1.5 w-3/5 rounded bg-electric" />
-            </div>
-            {/* text */}
-            <div className="space-y-1">
-              <div className="h-1 w-full rounded bg-white/12" />
-              <div className="h-1 w-4/5 rounded bg-white/12" />
-            </div>
-            {/* CTA */}
-            <div className="h-4 w-16 rounded-full bg-electric shadow-[0_6px_16px_-6px_rgba(91,140,255,0.7)]" />
-            {/* card */}
-            <div className="h-9 rounded-lg border border-white/10 bg-white/[0.03]" />
-            {/* stacked blocks */}
-            <div className="grid grid-cols-2 gap-1.5">
-              <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
-              <div className="h-7 rounded-md border border-white/10 bg-white/[0.02]" />
-            </div>
-            {/* detail / caption */}
-            <div className="space-y-1 pt-0.5">
-              <div className="h-1 w-3/4 rounded bg-white/12" />
-              <div className="h-1 w-1/2 rounded bg-white/[0.08]" />
-            </div>
-            {/* list row — mirrors the desktop mini-cards */}
-            <div className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.02] p-1.5">
-              <span className="h-3 w-3 shrink-0 rounded bg-electric/30" />
-              <div className="flex-1 space-y-1">
-                <div className="h-1 w-2/3 rounded bg-white/15" />
-                <div className="h-1 w-1/2 rounded bg-white/[0.08]" />
+              <div className="space-y-[3px]">
+                <span className="block h-[1.5px] w-3.5 rounded-full bg-white/70" />
+                <span className="block h-[1.5px] w-3.5 rounded-full bg-white/70" />
               </div>
             </div>
-            {/* secondary CTA */}
-            <div className="h-3.5 w-full rounded-full border border-white/10 bg-white/[0.03]" />
-            {/* Home indicator */}
-            <div className="mx-auto mt-auto h-1 w-10 rounded-full bg-white/25" />
+
+            {/* Hero — the primary piece: big title, short description, buttons.
+                Natural height (no stretch) so the page ends above the safe area. */}
+            <div className="flex flex-col pt-2.5">
+              <h3 className="text-[12.5px] font-extrabold leading-[1.08] tracking-tight text-white">
+                Sites que transformam ideias em{' '}
+                <span className="text-electric-bright">experiências digitais.</span>
+              </h3>
+
+              <p className="mt-2 text-[8.5px] font-medium leading-[1.45] text-chalk-dim">
+                Sites modernos, rápidos e feitos para converter.
+              </p>
+
+              <div className="mt-2.5 flex flex-col gap-1.5">
+                <span className="rounded-full bg-electric py-[6px] text-center text-[8.5px] font-semibold leading-none text-white shadow-[0_8px_18px_-8px_rgba(91,140,255,0.9)]">
+                  Solicitar orçamento
+                </span>
+                <span className="rounded-full border border-white/20 py-[6px] text-center text-[8.5px] font-medium leading-none text-white">
+                  Ver projetos
+                </span>
+              </div>
+
+              {/* Two priority services — larger, high-contrast cards */}
+              <div className="mt-2.5 flex flex-col gap-1.5">
+                {[
+                  { t: 'Landing Pages', m: 'Conversão' },
+                  { t: 'Sites Institucionais', m: 'Presença' },
+                ].map(({ t, m }) => (
+                  <div
+                    key={t}
+                    className="flex items-center gap-2 rounded-lg border border-white/[0.14] bg-white/[0.04] px-2.5 py-[7px]"
+                  >
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-electric shadow-[0_0_8px_0_rgba(91,140,255,0.8)]" />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[9px] font-semibold leading-none text-white">{t}</div>
+                      <div className="mt-[3px] text-[6.5px] font-medium uppercase tracking-[0.16em] text-electric-bright">
+                        {m}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom safe area (iOS-style) — reserved breathing room that keeps
+                the page content clear of the device edge, with a discreet,
+                low-contrast gesture bar centered inside it. */}
+            <div className="mt-auto flex h-[10%] shrink-0 items-end justify-center pb-1.5">
+              <div className="h-[3px] w-11 rounded-full bg-white/20" />
+            </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }
 

@@ -131,6 +131,54 @@
         "value": "#33405e",
         "createdAt": "2026-08-29T13:00:52.168Z",
         "reason": "impeccable design director: neutral scrollbar-thumb hover surface in the ink family"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "4px",
+        "createdAt": "2026-09-01T12:51:36.869Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type for realistic scaled site render"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "4.5px",
+        "createdAt": "2026-09-01T12:51:42.541Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "5px",
+        "createdAt": "2026-09-01T12:51:47.810Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "6px",
+        "createdAt": "2026-09-01T12:51:53.710Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "6.5px",
+        "createdAt": "2026-09-01T12:58:20.310Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "5.5px",
+        "createdAt": "2026-09-01T12:58:34.474Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "7px",
+        "createdAt": "2026-09-01T13:09:47.471Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type for realistic scaled mobile render"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "8.5px",
+        "createdAt": "2026-09-01T13:09:53.141Z",
+        "reason": "phone-screenshot mockup: intentional sub-ramp micro-type for realistic scaled mobile render"
       }
     ]
   }
