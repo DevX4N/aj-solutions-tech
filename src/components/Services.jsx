@@ -9,6 +9,7 @@ import {
   Wrench,
 } from 'lucide-react'
 import { services } from '../lib/site'
+import useFinePointer from '../lib/useFinePointer'
 import { Reveal, SectionMark } from './primitives'
 
 const icons = {
@@ -54,30 +55,49 @@ export default function Services() {
 }
 
 function ServiceCard({ service, Icon, wide }) {
+  const finePointer = useFinePointer()
   const ref = useRef(null)
+  const rect = useRef(null)
   const [pos, setPos] = useState({ x: -200, y: -200 })
 
+  // Cache the rect on enter so pointermove never forces a layout (reflow).
+  const onEnter = () => {
+    rect.current = ref.current?.getBoundingClientRect() ?? null
+  }
   const onMove = (e) => {
-    const r = ref.current.getBoundingClientRect()
+    const r = rect.current
+    if (!r) return
     setPos({ x: e.clientX - r.left, y: e.clientY - r.top })
   }
+
+  // The spotlight follows the cursor — meaningless on touch, and updating it on
+  // every touch-drag would re-render + repaint a radial gradient during scroll.
+  // Attach the tracking handlers only for desktop fine pointers.
+  const trackingProps = finePointer
+    ? {
+        onPointerEnter: onEnter,
+        onPointerMove: onMove,
+        onPointerLeave: () => setPos({ x: -200, y: -200 }),
+      }
+    : {}
 
   return (
     <article
       ref={ref}
-      onPointerMove={onMove}
-      onPointerLeave={() => setPos({ x: -200, y: -200 })}
+      {...trackingProps}
       className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-ink-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 sm:p-7 ${
         wide ? 'flex flex-col justify-between gap-6 lg:flex-row lg:items-center' : ''
       }`}
     >
-      {/* cursor spotlight */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(340px circle at ${pos.x}px ${pos.y}px, rgba(91,140,255,0.12), transparent 65%)`,
-        }}
-      />
+      {/* cursor spotlight — desktop only */}
+      {finePointer && (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(340px circle at ${pos.x}px ${pos.y}px, rgba(91,140,255,0.12), transparent 65%)`,
+          }}
+        />
+      )}
       <div className="bp-grid-fine pointer-events-none absolute inset-0 opacity-30" />
 
       <div className={`relative ${wide ? 'lg:max-w-xl' : ''}`}>
