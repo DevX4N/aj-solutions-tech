@@ -113,7 +113,10 @@ export default function Contact() {
           background: 'radial-gradient(700px circle at 30% 20%, rgba(91,140,255,0.14), transparent 60%)',
         }}
       />
-      <div className="pointer-events-none absolute -bottom-32 right-[-10%] h-[440px] w-[560px] rounded-full bg-violet/12 blur-[140px]" />
+      <div
+        className="pointer-events-none absolute -bottom-32 right-[-10%] h-[440px] w-[560px]"
+        style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(139,108,255,0.13), transparent 70%)' }}
+      />
 
       <div className="shell relative">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">

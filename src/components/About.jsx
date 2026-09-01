@@ -42,8 +42,14 @@ export default function About() {
           <Reveal delay={0.1}>
             <div className="relative aspect-square overflow-hidden rounded-3xl border border-line bg-ink-800">
               <div className="bp-grid pointer-events-none absolute inset-0 opacity-60" />
-              <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-electric/15 blur-[80px]" />
-              <div className="pointer-events-none absolute -bottom-20 -left-16 h-64 w-64 rounded-full bg-violet/15 blur-[90px]" />
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 h-64 w-64"
+                style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(91,140,255,0.16), transparent 70%)' }}
+              />
+              <div
+                className="pointer-events-none absolute -bottom-20 -left-16 h-64 w-64"
+                style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(139,108,255,0.16), transparent 70%)' }}
+              />
 
               {/* orbiting rings */}
               <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full" aria-hidden="true">

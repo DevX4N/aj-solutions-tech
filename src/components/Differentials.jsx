@@ -6,7 +6,10 @@ export default function Differentials() {
   return (
     <section className="relative overflow-hidden border-y border-line bg-ink-900 py-24 sm:py-28">
       <div className="bp-grid pointer-events-none absolute inset-0 opacity-40" />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/[0.06] blur-[130px]" />
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2"
+        style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(91,140,255,0.07), transparent 70%)' }}
+      />
 
       <div className="shell relative">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
