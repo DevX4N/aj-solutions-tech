@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useSpring } from 'framer-motion'
+import { m, useReducedMotion, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 // Physics-based smooth cursor (magicui) adapted to this project:
@@ -125,7 +125,7 @@ export default function SmoothCursor() {
   if (!enabled) return null
 
   return (
-    <motion.div
+    <m.div
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 z-[9999] hidden lg:block"
       style={{
@@ -143,6 +143,6 @@ export default function SmoothCursor() {
       transition={{ duration: 0.15 }}
     >
       <ArrowCursor />
-    </motion.div>
+    </m.div>
   )
 }

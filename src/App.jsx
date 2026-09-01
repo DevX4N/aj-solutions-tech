@@ -1,5 +1,5 @@
-import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { m, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import { MessageCircle } from 'lucide-react'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -14,11 +14,15 @@ import Testimonials from './components/Testimonials'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import SmoothCursor from './components/SmoothCursor'
+import useFinePointer from './lib/useFinePointer'
 import { whatsappHref } from './lib/site'
+
+// Desktop-only custom cursor — lazy so touch devices never download its chunk.
+const SmoothCursor = lazy(() => import('./components/SmoothCursor'))
 
 export default function App() {
   const reduce = useReducedMotion()
+  const finePointer = useFinePointer()
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 })
   const [showWhats, setShowWhats] = useState(false)
@@ -31,11 +35,15 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-ink">
-      <SmoothCursor />
+      {finePointer && !reduce && (
+        <Suspense fallback={null}>
+          <SmoothCursor />
+        </Suspense>
+      )}
 
       {/* Scroll progress */}
       {!reduce && (
-        <motion.div
+        <m.div
           className="fixed inset-x-0 top-0 z-[70] h-0.5 origin-left bg-electric"
           style={{ scaleX }}
         />
@@ -67,7 +75,7 @@ export default function App() {
       <Footer />
 
       {/* Floating WhatsApp — appears after scroll */}
-      <motion.a
+      <m.a
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
@@ -84,7 +92,7 @@ export default function App() {
       >
         <MessageCircle className="h-5 w-5" strokeWidth={2.2} />
         <span className="hidden sm:inline">WhatsApp</span>
-      </motion.a>
+      </m.a>
     </div>
   )
 }

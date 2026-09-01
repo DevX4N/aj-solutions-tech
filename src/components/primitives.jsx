@@ -1,11 +1,11 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 // Scroll reveal — one authored entrance moment, exponential ease-out from an
 // already-usable default. Under prefers-reduced-motion it renders statically.
 export function Reveal({ children, delay = 0, y = 22, className = '', as = 'div' }) {
   const reduce = useReducedMotion()
-  const MotionTag = motion[as] || motion.div
+  const MotionTag = m[as] || m.div
   if (reduce) {
     const Tag = as
     return <Tag className={className}>{children}</Tag>
@@ -28,7 +28,7 @@ export function Stagger({ children, className = '', gap = 0.08 }) {
   const reduce = useReducedMotion()
   if (reduce) return <div className={className}>{children}</div>
   return (
-    <motion.div
+    <m.div
       className={className}
       initial="hidden"
       whileInView="show"
@@ -36,7 +36,7 @@ export function Stagger({ children, className = '', gap = 0.08 }) {
       variants={{ show: { transition: { staggerChildren: gap } } }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -44,7 +44,7 @@ export function StaggerItem({ children, className = '', y = 20 }) {
   const reduce = useReducedMotion()
   if (reduce) return <div className={className}>{children}</div>
   return (
-    <motion.div
+    <m.div
       className={className}
       variants={{
         hidden: { opacity: 0, y },
@@ -52,7 +52,7 @@ export function StaggerItem({ children, className = '', y = 20 }) {
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { nav } from '../lib/site'
@@ -28,7 +28,7 @@ export default function Header() {
       <div
         className={`transition-all duration-500 ease-out ${
           scrolled
-            ? 'border-b border-line bg-ink/70 backdrop-blur-xl'
+            ? 'border-b border-line bg-ink/90 backdrop-blur-md lg:bg-ink/70 lg:backdrop-blur-xl'
             : 'border-b border-transparent bg-transparent'
         }`}
       >
@@ -70,15 +70,15 @@ export default function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             className="lg:hidden"
             initial={reduce ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={reduce ? {} : { opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <motion.div
-              className="mx-4 mt-2 overflow-hidden rounded-2xl border border-line bg-ink-800/95 p-3 backdrop-blur-xl shadow-lift"
+            <m.div
+              className="mx-4 mt-2 overflow-hidden rounded-2xl border border-line bg-ink-800/[0.98] p-3 backdrop-blur-md shadow-lift"
               initial={reduce ? {} : { y: -12, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={reduce ? {} : { y: -12, opacity: 0 }}
@@ -86,7 +86,7 @@ export default function Header() {
             >
               <nav className="flex flex-col" aria-label="Navegação mobile">
                 {nav.map((item, i) => (
-                  <motion.a
+                  <m.a
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
@@ -97,7 +97,7 @@ export default function Header() {
                   >
                     {item.label}
                     <span className="mono-label">{String(i + 1).padStart(2, '0')}</span>
-                  </motion.a>
+                  </m.a>
                 ))}
                 <a
                   href="#contato"
@@ -108,8 +108,8 @@ export default function Header() {
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               </nav>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

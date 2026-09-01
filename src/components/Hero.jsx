@@ -1,10 +1,13 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { m, useReducedMotion } from 'framer-motion'
+import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { ArrowRight, Gauge, MousePointerClick, Smartphone, Sparkles } from 'lucide-react'
 import { whatsappHref } from '../lib/site'
+import useFinePointer from '../lib/useFinePointer'
 import BrowserMock from './BrowserMock'
-import CursorGrid from './CursorGrid'
 import Marquee from './Marquee'
+
+// Cursor-reactive canvas grid — desktop-only, lazy so touch never fetches it.
+const CursorGrid = lazy(() => import('./CursorGrid'))
 
 const proof = [
   { icon: Sparkles, label: 'Design personalizado' },
@@ -15,6 +18,7 @@ const proof = [
 
 export default function Hero() {
   const reduce = useReducedMotion()
+  const finePointer = useFinePointer()
   const ref = useRef(null)
   const [light, setLight] = useState({ x: 50, y: 30 })
 
@@ -63,12 +67,24 @@ export default function Hero() {
           background: `radial-gradient(560px circle at ${light.x}% ${light.y}%, rgba(91,140,255,0.16), transparent 60%)`,
         }}
       />
-      {/* Static ambient glows — controlled, not soup */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-electric/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-[-10%] h-[420px] w-[520px] rounded-full bg-violet/10 blur-[130px]" />
+      {/* Static ambient glows — controlled, not soup. Rendered as radial
+          gradients (not blurred fills) so iOS/Safari never pays the cost of a
+          large gaussian-blur layer on first paint (LCP) or during scroll. */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[820px] -translate-x-1/2"
+        style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(91,140,255,0.11), transparent 70%)' }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-[-10%] h-[420px] w-[520px]"
+        style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(139,108,255,0.11), transparent 70%)' }}
+      />
 
-      {/* Cursor-reactive grid — cells light up around the pointer */}
-      <CursorGrid />
+      {/* Cursor-reactive grid — cells light up around the pointer (desktop only) */}
+      {finePointer && !reduce && (
+        <Suspense fallback={null}>
+          <CursorGrid />
+        </Suspense>
+      )}
 
       <div className="shell relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
@@ -97,7 +113,7 @@ export default function Hero() {
               </RevealLine>
             </h1>
 
-            <motion.p
+            <m.p
               initial={reduce ? {} : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.34 }}
@@ -105,9 +121,9 @@ export default function Hero() {
             >
               Criamos sites modernos, rápidos e estratégicos para transformar visitantes em
               clientes e marcas em referências digitais.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={reduce ? {} : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.44 }}
@@ -120,10 +136,10 @@ export default function Hero() {
               <a href="#projetos" className="btn-ghost">
                 Ver projetos
               </a>
-            </motion.div>
+            </m.div>
 
             {/* Proof row */}
-            <motion.ul
+            <m.ul
               initial={reduce ? {} : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -135,11 +151,11 @@ export default function Hero() {
                   {label}
                 </li>
               ))}
-            </motion.ul>
+            </m.ul>
           </div>
 
           {/* Right — floating instrument mockup */}
-          <motion.div
+          <m.div
             initial={reduce ? {} : { opacity: 0, y: 30, rotateX: 8 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -147,7 +163,7 @@ export default function Hero() {
             style={{ perspective: 1200 }}
           >
             <BrowserMock reduce={reduce} />
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -171,14 +187,14 @@ function RevealLine({ children, reduce, delay }) {
   if (reduce) return <span className="block">{children}</span>
   return (
     <span className="block overflow-hidden">
-      <motion.span
+      <m.span
         className="block"
         initial={{ y: '110%' }}
         animate={{ y: 0 }}
         transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
-      </motion.span>
+      </m.span>
     </span>
   )
 }

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react'
 import { testimonials } from '../lib/site'
@@ -42,7 +42,7 @@ export default function Testimonials() {
 
           <div className="relative min-h-[220px] sm:min-h-[200px]">
             <AnimatePresence mode="wait" custom={dir}>
-              <motion.blockquote
+              <m.blockquote
                 key={i}
                 custom={dir}
                 initial={reduce ? {} : { opacity: 0, x: dir * 40 }}
@@ -61,7 +61,7 @@ export default function Testimonials() {
                     <div className="font-semibold text-chalk">{t.name}</div>
                   </div>
                 </footer>
-              </motion.blockquote>
+              </m.blockquote>
             </AnimatePresence>
           </div>
 

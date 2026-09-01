@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Activity, TrendingUp } from 'lucide-react'
 
 // Floating instrument-panel browser mockup — an authored preview of a site
@@ -13,7 +13,7 @@ export default function BrowserMock({ reduce }) {
       {/* Corner ticks — technical drawing registration marks */}
       <CornerTicks />
 
-      <motion.div {...float} className="relative">
+      <m.div {...float} className="relative">
         <div className="overflow-hidden rounded-2xl border border-line bg-ink-800 shadow-lift">
           {/* Chrome bar */}
           <div className="flex items-center gap-2 border-b border-line bg-ink-700 px-4 py-3">
@@ -68,11 +68,11 @@ export default function BrowserMock({ reduce }) {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Floating performance gauge instrument — drifts on its own 7s cadence
           for depth parallax against the phone (8s) and tag (9s). */}
-      <motion.div
+      <m.div
         initial={reduce ? {} : { opacity: 0, scale: 0.9 }}
         animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, -6, 0] }}
         transition={{
@@ -86,7 +86,7 @@ export default function BrowserMock({ reduce }) {
           <div className="relative grid h-11 w-11 place-items-center">
             <svg viewBox="0 0 44 44" className="absolute inset-0 -rotate-90">
               <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
-              <motion.circle
+              <m.circle
                 cx="22"
                 cy="22"
                 r="18"
@@ -113,11 +113,11 @@ export default function BrowserMock({ reduce }) {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Floating conversion tag — slower 9s cadence, opposite phase to the
           gauge, so the composition breathes with real depth. */}
-      <motion.div
+      <m.div
         initial={reduce ? {} : { opacity: 0, scale: 0.9 }}
         animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1, y: [0, 7, 0] }}
         transition={{
@@ -134,7 +134,7 @@ export default function BrowserMock({ reduce }) {
             UX estratégico
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Overlapping mobile mockup — same site, responsive version (static) */}
       <MobilePhone />

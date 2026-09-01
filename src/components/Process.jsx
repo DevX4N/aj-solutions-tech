@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { processSteps } from '../lib/site'
 import { SectionMark } from './primitives'
@@ -26,7 +26,7 @@ export default function Process() {
           {/* rail */}
           <div className="absolute left-[27px] top-2 bottom-2 w-px bg-line md:left-1/2 md:-translate-x-1/2" />
           {!reduce && (
-            <motion.div
+            <m.div
               className="absolute left-[27px] top-2 w-px bg-gradient-to-b from-electric via-electric to-electric/30 md:left-1/2 md:-translate-x-1/2"
               style={{ height: fillHeight }}
             />
@@ -58,7 +58,7 @@ function Step({ step, index, reduce }) {
         </div>
 
         {/* content */}
-        <motion.div
+        <m.div
           initial={reduce ? {} : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-15% 0px' }}
@@ -80,7 +80,7 @@ function Step({ step, index, reduce }) {
           >
             {step.body}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* center node for desktop */}
         <div className="pointer-events-none absolute left-1/2 top-0 hidden -translate-x-1/2 md:block">
@@ -93,7 +93,7 @@ function Step({ step, index, reduce }) {
 
 function Node({ n, reduce }) {
   return (
-    <motion.div
+    <m.div
       initial={reduce ? {} : { scale: 0.6, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true, margin: '-10% 0px' }}
@@ -102,6 +102,6 @@ function Node({ n, reduce }) {
     >
       <span className="absolute inset-0 rounded-full bg-electric/10 blur-md" />
       <span className="relative font-mono text-[15px] font-semibold text-chalk">{n}</span>
-    </motion.div>
+    </m.div>
   )
 }

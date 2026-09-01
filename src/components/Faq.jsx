@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { faqs, whatsappHref } from '../lib/site'
@@ -50,7 +50,7 @@ export default function Faq() {
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div
+                      <m.div
                         initial={reduce ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={reduce ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
@@ -60,7 +60,7 @@ export default function Faq() {
                         <p className="max-w-xl pb-7 text-[15.5px] leading-relaxed text-chalk-dim">
                           {item.a}
                         </p>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>
