@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// Tokens tuned for crisp, high-contrast borders on the dark theme.
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
@@ -11,7 +12,7 @@ export default {
           700: '#12141C',
           600: '#171A24',
         },
-        line: 'rgba(255,255,255,0.09)',
+        line: 'rgba(255,255,255,0.12)',
         chalk: {
           DEFAULT: '#F3F5FB',
           dim: '#B7BECF',
@@ -42,8 +43,8 @@ export default {
         prose: '68ch',
       },
       boxShadow: {
-        lift: '0 24px 60px -20px rgba(0,0,0,0.7), 0 8px 20px -12px rgba(0,0,0,0.6)',
-        glow: '0 0 0 1px rgba(91,140,255,0.35), 0 20px 60px -22px rgba(91,140,255,0.55)',
+        lift: '0 18px 40px -22px rgba(0,0,0,0.78), 0 4px 12px -8px rgba(0,0,0,0.55)',
+        glow: '0 0 0 1px rgba(91,140,255,0.35), 0 14px 38px -24px rgba(91,140,255,0.45)',
       },
       keyframes: {
         marquee: {

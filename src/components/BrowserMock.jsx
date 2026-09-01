@@ -16,7 +16,7 @@ export default function BrowserMock({ reduce }) {
       <motion.div {...float} className="relative">
         <div className="overflow-hidden rounded-2xl border border-line bg-ink-800 shadow-lift">
           {/* Chrome bar */}
-          <div className="flex items-center gap-2 border-b border-line bg-ink-700/80 px-4 py-3">
+          <div className="flex items-center gap-2 border-b border-line bg-ink-700 px-4 py-3">
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
@@ -80,7 +80,7 @@ export default function BrowserMock({ reduce }) {
           scale: { duration: 0.7, delay: 1 },
           y: { duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1.8 },
         }}
-        className="absolute -left-6 bottom-8 hidden rounded-xl border border-line bg-ink-700/95 p-3.5 shadow-lift backdrop-blur-md sm:block"
+        className="absolute -left-6 bottom-8 hidden rounded-xl border border-line bg-ink-700 p-3.5 shadow-lift sm:block"
       >
         <div className="flex items-center gap-3">
           <div className="relative grid h-11 w-11 place-items-center">
@@ -125,7 +125,7 @@ export default function BrowserMock({ reduce }) {
           scale: { duration: 0.7, delay: 1.2 },
           y: { duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 },
         }}
-        className="absolute -right-4 top-10 hidden items-center gap-2 rounded-xl border border-line bg-ink-700/95 px-3.5 py-2.5 shadow-lift backdrop-blur-md sm:flex"
+        className="absolute -right-4 top-10 hidden items-center gap-2 rounded-xl border border-line bg-ink-700 px-3.5 py-2.5 shadow-lift sm:flex"
       >
         <TrendingUp className="h-4 w-4 text-electric-bright" strokeWidth={2} />
         <div>
@@ -149,18 +149,16 @@ export default function BrowserMock({ reduce }) {
 function MobilePhone() {
   return (
     <div className="absolute bottom-1 right-1 z-20 w-[116px] sm:-bottom-9 sm:-right-2 sm:w-[140px] lg:-bottom-[72px] lg:-right-4 lg:w-[166px]">
-      {/* Discreet blue glow + soft dark backdrop to lift the phone off the grid.
-          These sit BEHIND the device (-z-10) and never touch the screen. */}
-      <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[44px] bg-electric/10 blur-xl" />
-      <div className="pointer-events-none absolute inset-2 -z-10 rounded-[40px] bg-ink/50 blur-lg" />
+      {/* Discreet, controlled blue glow to seat the phone on the grid — tight
+          radius and low opacity so it reads as depth, not a diffuse halo.
+          Sits BEHIND the device (-z-10) and never touches the screen edge. */}
+      <div className="pointer-events-none absolute -inset-1 -z-10 rounded-[36px] bg-electric/[0.07] blur-lg" />
 
-      {/* Device — static, no animation */}
-      <div
-        style={{ rotate: 1.5 }}
-        className="relative rounded-[30px] border border-white/[0.14] bg-ink p-[5px] shadow-[0_30px_72px_-20px_rgba(0,0,0,0.9)]"
-      >
+      {/* Device — static, no animation. Axis-aligned for pixel-perfect edges;
+          crisp frame, contained shadow. */}
+      <div className="relative rounded-[30px] border border-white/[0.18] bg-ink p-[5px] shadow-[0_20px_44px_-24px_rgba(0,0,0,0.85)]">
         {/* Screen — tall smartphone aspect. Sharp, no blur, no overlay. */}
-        <div className="relative flex aspect-[9/19] flex-col overflow-hidden rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-ink-800 to-ink">
+        <div className="relative flex aspect-[9/19] flex-col overflow-hidden rounded-[24px] border border-white/[0.10] bg-gradient-to-b from-ink-800 to-ink">
           {/* Speaker + front camera */}
           <div className="absolute left-1/2 top-2 z-20 flex -translate-x-1/2 items-center gap-1.5">
             <span className="h-1 w-9 rounded-full bg-white/20" />

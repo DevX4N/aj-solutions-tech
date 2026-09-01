@@ -138,7 +138,7 @@ function ProjectVisual({ project, reduce }) {
       </div>
 
       {/* placeholder stamp */}
-      <span className="absolute bottom-3 left-3 rounded-md border border-line bg-ink/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-chalk-faint backdrop-blur-sm">
+      <span className="absolute bottom-3 left-3 rounded-md border border-line bg-ink/85 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-chalk-faint">
         Demonstração
       </span>
     </div>

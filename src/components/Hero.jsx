@@ -4,6 +4,7 @@ import { ArrowRight, Gauge, MousePointerClick, Smartphone, Sparkles } from 'luci
 import { whatsappHref } from '../lib/site'
 import BrowserMock from './BrowserMock'
 import CursorGrid from './CursorGrid'
+import Marquee from './Marquee'
 
 const proof = [
   { icon: Sparkles, label: 'Design personalizado' },
@@ -34,7 +35,11 @@ export default function Hero() {
   }, [reduce])
 
   return (
-    <section id="inicio" ref={ref} className="relative overflow-hidden pt-32 pb-20 sm:pt-36 lg:pt-44 lg:pb-28">
+    <section
+      id="inicio"
+      ref={ref}
+      className="relative flex min-h-[100svh] flex-col overflow-hidden pt-24 pb-8 sm:pt-28 lg:pt-24 lg:pb-9"
+    >
       {/* Blueprint ground + moving grid */}
       <div className="pointer-events-none absolute inset-0 bp-grid opacity-70" />
       <div
@@ -140,6 +145,14 @@ export default function Hero() {
             <BrowserMock reduce={reduce} />
           </motion.div>
         </div>
+      </div>
+
+      {/* Service marquee — closing band pinned near the hero's bottom edge.
+          In-flow (not absolute) so overflow-hidden never clips it; mt-auto pins
+          it to the bottom, the top padding clears the phone mockup overhang, and
+          the section's small bottom padding leaves ~40px before the next section. */}
+      <div className="relative z-10 mt-auto pt-6 lg:pt-6">
+        <Marquee />
       </div>
 
       {/* WhatsApp quick link floats at hero base on mobile-visible flow via CTA below; keep hero clean here */}

@@ -132,7 +132,7 @@ export default function Contact() {
           </div>
 
           {/* Form column */}
-          <div className="relative rounded-3xl border border-line bg-ink-800/70 p-6 shadow-lift backdrop-blur-sm sm:p-9">
+          <div className="relative rounded-3xl border border-line bg-ink-800 p-6 shadow-lift sm:p-9">
             {status === 'success' ? (
               <SuccessState onReset={() => setStatus('idle')} />
             ) : (

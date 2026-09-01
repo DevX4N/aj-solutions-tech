@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { MessageCircle } from 'lucide-react'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Marquee from './components/Marquee'
 import Pillars from './components/Pillars'
 import Services from './components/Services'
 import Projects from './components/Projects'
@@ -53,7 +52,6 @@ export default function App() {
 
       <main>
         <Hero />
-        <Marquee />
         <Pillars />
         <Services />
         <Projects />
