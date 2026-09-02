@@ -40,9 +40,10 @@ jobs:
           # Pasta local publicada (saída do Vite)
           local-dir: ./dist/
           # Pasta remota de destino.
-          #  - Conta FTP principal do cPanel: use "public_html/"
-          #  - Conta FTP dedicada com home em public_html: troque para "./"
-          server-dir: public_html/
+          # Conta FTP dedicada com Diretório = public_html → o home JÁ é
+          # o public_html, então enviamos na raiz ("./").
+          # (Se um dia usar a conta principal do cPanel, troque para "public_html/".)
+          server-dir: ./
           # Não remove pastas do servidor que não fazem parte do build
           # (ex.: api/, .well-known/ do AutoSSL)
           exclude: |
