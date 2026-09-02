@@ -1,0 +1,69 @@
+# ============================================================================
+# AJ Solutions Tech — configuração Apache (HostGator / cPanel)
+# Local: public_html/.htaccess
+# ============================================================================
+
+# Documento padrão
+DirectoryIndex index.html
+
+# Não listar o conteúdo das pastas
+Options -Indexes
+
+# ----------------------------------------------------------------------------
+# HTTPS + www (domínio canônico)
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Não redirecionar a validação do SSL (renovação Let's Encrypt / AutoSSL)
+  RewriteCond %{REQUEST_URI} ^/\.well-known/acme-challenge/ [NC]
+  RewriteRule ^ - [L]
+
+  # Força https://www.ajsolutionstech.com em um único salto
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.ajsolutionstech\.com$ [NC]
+  RewriteRule ^ https://www.ajsolutionstech.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Compressão (gzip)
+# ----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml \
+    application/javascript application/json application/xml image/svg+xml \
+    font/ttf font/otf application/vnd.ms-fontobject
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Cache do navegador
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Assets com hash no nome (JS/CSS/fontes) — cache longo e imutável
+  <FilesMatch "\.(js|css|woff2?|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imagens — cache de 30 dias
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+
+  # HTML — sempre revalidar para pegar novas versões do site
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Cabeçalhos de segurança básicos
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Tipos MIME modernos (garantia)
+# ----------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+</IfModule>
