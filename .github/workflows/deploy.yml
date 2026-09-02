@@ -1,0 +1,52 @@
+name: Deploy para HostGator
+
+# Roda a cada push na main (e permite disparo manual pela aba Actions)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Evita dois deploys simultâneos pisando um no outro
+concurrency:
+  group: deploy-hostgator
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configura Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instala dependências
+        run: npm ci
+
+      - name: Gera build de produção
+        run: npm run build
+
+      - name: Envia dist/ por FTP para o public_html
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          # Pasta local publicada (saída do Vite)
+          local-dir: ./dist/
+          # Pasta remota de destino.
+          #  - Conta FTP principal do cPanel: use "public_html/"
+          #  - Conta FTP dedicada com home em public_html: troque para "./"
+          server-dir: public_html/
+          # Não remove pastas do servidor que não fazem parte do build
+          # (ex.: api/, .well-known/ do AutoSSL)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            api/**
+            .well-known/**
