@@ -261,9 +261,9 @@ export const faqs = [
 
 export const projectTypes = ['Landing Page', 'Site Institucional', 'Redesign', 'Outro']
 export const budgetRanges = [
-  'Até R$ 2.000',
-  'R$ 2.000 – R$ 5.000',
-  'R$ 5.000 – R$ 10.000',
+  'Até R$ 1.000',
+  'R$ 1.000 – R$ 3.000',
+  'R$ 3.000 – R$ 10.000',
   'Acima de R$ 10.000',
   'Ainda não sei',
 ]
