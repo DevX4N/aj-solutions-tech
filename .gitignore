@@ -4,6 +4,9 @@ node_modules/
 # Build de produção
 dist/
 
+# Artefatos de empacotamento (zips de deploy)
+*.zip
+
 # Arquivos Markdown (não versionar, por solicitação)
 *.md
 
