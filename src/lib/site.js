@@ -10,7 +10,7 @@
 // --- CONTATOS (PLACEHOLDER — trocar pelos dados reais) -----------------------
 export const contact = {
   // WhatsApp em formato internacional, só dígitos. Ex.: 5511999998888
-  whatsappNumber: '5581999235088',
+  whatsappNumber: '5581992350882',
   whatsappMessage: 'Olá! Vim pelo site e gostaria de solicitar um orçamento.',
   email: 'contato@ajsolutionstech.com.br', // PLACEHOLDER
   instagram: 'https://instagram.com/', // PLACEHOLDER
