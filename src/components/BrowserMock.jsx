@@ -172,11 +172,16 @@ function MobilePhone() {
             {/* Compact mobile header — brand mark + wordmark + menu */}
             <div className="flex items-center justify-between border-b border-white/10 pb-2">
               <div className="flex items-center gap-1.5">
-                <span className="grid h-4 w-4 place-items-center rounded-[4px] bg-gradient-to-br from-electric to-violet text-[7px] font-bold leading-none text-white">
-                  AJ
+                <span className="grid h-4 w-4 place-items-center overflow-hidden rounded-[4px] border border-white/10 bg-ink-700">
+                  <img
+                    src="/brand/aj-marca-A-branco-512-transparente.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="h-3 w-3 object-contain"
+                  />
                 </span>
                 <span className="text-[8.5px] font-semibold leading-none tracking-tight text-white">
-                  AJ Solutions
+                  AJ Solutions<span className="text-chalk-faint"> Tech</span>
                 </span>
               </div>
               <div className="space-y-[3px]">

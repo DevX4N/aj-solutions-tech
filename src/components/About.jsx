@@ -63,9 +63,11 @@ export default function About() {
 
               <div className="absolute inset-0 grid place-items-center">
                 <div className="text-center">
-                  <div className="font-display text-[clamp(3rem,7vw,4.5rem)] font-extrabold leading-none tracking-tightest text-chalk">
-                    AJ
-                  </div>
+                  <img
+                    src="/brand/aj-marca-A-branco-512-transparente.png"
+                    alt="AJ Solutions Tech"
+                    className="mx-auto h-[clamp(6rem,15vw,9rem)] w-auto"
+                  />
                   <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.28em] text-electric-bright">
                     Solutions Tech
                   </div>

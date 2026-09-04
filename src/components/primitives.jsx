@@ -125,17 +125,12 @@ export function Wordmark({ className = '' }) {
       aria-label="AJ Solutions Tech — início"
     >
       <span className="relative grid h-9 w-9 place-items-center rounded-[10px] border border-line bg-ink-700/70 overflow-hidden">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path
-            d="M9 22 L15 10 L21 22"
-            stroke="#5B8CFF"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path d="M11.5 18 H18.5" stroke="#5B8CFF" strokeWidth="2.4" strokeLinecap="round" />
-          <path d="M22 10 V22" stroke="#F3F5FB" strokeWidth="2.4" strokeLinecap="round" />
-        </svg>
+        <img
+          src="/brand/aj-marca-A-branco-512-transparente.png"
+          alt=""
+          aria-hidden="true"
+          className="h-7 w-7 object-contain"
+        />
       </span>
       <span className="font-display text-[17px] font-semibold tracking-tighter text-chalk">
         AJ Solutions<span className="text-chalk-faint"> Tech</span>
