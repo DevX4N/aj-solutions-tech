@@ -1,11 +1,12 @@
-import { ArrowUpRight, Instagram, Linkedin, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react'
 import { contact, nav, whatsappHref } from '../lib/site'
 import { Wordmark } from './primitives'
 
 const socials = [
-  { label: 'Instagram', href: contact.instagram, Icon: Instagram },
-  { label: 'LinkedIn', href: contact.linkedin, Icon: Linkedin },
-  { label: 'WhatsApp', href: whatsappHref, Icon: MessageCircle },
+  { label: 'Instagram', href: contact.instagram, Icon: Instagram, external: true },
+  { label: 'LinkedIn', href: contact.linkedin, Icon: Linkedin, external: true },
+  { label: 'WhatsApp', href: whatsappHref, Icon: MessageCircle, external: true },
+  { label: contact.email, href: `mailto:${contact.email}`, Icon: Mail, external: false },
 ]
 
 export default function Footer() {
@@ -43,15 +44,14 @@ export default function Footer() {
             <div>
               <h3 className="mono-label mb-5">Redes</h3>
               <ul className="space-y-3">
-                {socials.map(({ label, href, Icon }) => (
+                {socials.map(({ label, href, Icon, external }) => (
                   <li key={label}>
                     <a
                       href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2.5 text-[15px] text-chalk-dim transition-colors hover:text-chalk"
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="group inline-flex items-center gap-2.5 text-[15px] text-chalk-dim transition-colors hover:text-chalk break-all"
                     >
-                      <Icon className="h-4 w-4 text-chalk-faint transition-colors group-hover:text-electric-bright" strokeWidth={1.75} />
+                      <Icon className="h-4 w-4 flex-shrink-0 text-chalk-faint transition-colors group-hover:text-electric-bright" strokeWidth={1.75} />
                       {label}
                     </a>
                   </li>
