@@ -113,7 +113,7 @@ export const projects = [
     id: 'aether',
     caseId: 'CASE-01',
     name: 'AETHER',
-    kind: 'Site experimental para marca de arquitetura energética, com hero 3D interativo e telemetria ao vivo — uma vitrine de tecnologia de ponta.',
+    kind: 'Site para marca de arquitetura energética, com hero 3D interativo e telemetria ao vivo — uma vitrine de tecnologia de ponta.',
     year: '2026',
     tags: ['Vitrine de marca', 'Experiência imersiva'],
     status: 'Publicado',
