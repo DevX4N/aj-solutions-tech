@@ -64,10 +64,10 @@ function ProjectRow({ project, flip, reduce }) {
           </h3>
           <p className="mt-3 max-w-md text-[15px] leading-relaxed text-chalk-dim">{project.kind}</p>
 
-          {/* Ficha técnica — stack + status */}
+          {/* Ficha do case — foco + status */}
           <dl className="mt-7 grid grid-cols-1 gap-5 border-t border-line pt-6 sm:grid-cols-[1fr_auto]">
             <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-chalk-faint">Stack</dt>
+              <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-chalk-faint">Foco</dt>
               <dd className="mt-2 flex flex-wrap gap-2">
                 {project.tags.map((t) => (
                   <span
