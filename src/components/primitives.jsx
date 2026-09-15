@@ -1,5 +1,6 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 // Scroll reveal — one authored entrance moment, exponential ease-out from an
 // already-usable default. Under prefers-reduced-motion it renders statically.
@@ -119,8 +120,8 @@ export function Counter({ to, suffix = '', duration = 1600 }) {
 // Textual wordmark for AJ Solutions Tech — a drawn monogram + set text.
 export function Wordmark({ className = '' }) {
   return (
-    <a
-      href="#inicio"
+    <Link
+      to="/#inicio"
       className={`group inline-flex items-center gap-2.5 ${className}`}
       aria-label="AJ Solutions Tech — início"
     >
@@ -135,6 +136,6 @@ export function Wordmark({ className = '' }) {
       <span className="font-display text-[17px] font-semibold tracking-tighter text-chalk">
         AJ Solutions<span className="text-chalk-faint"> Tech</span>
       </span>
-    </a>
+    </Link>
   )
 }

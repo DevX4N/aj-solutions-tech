@@ -1,18 +1,10 @@
 import { m, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 import { Suspense, lazy, useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Pillars from './components/Pillars'
-import Services from './components/Services'
-import Projects from './components/Projects'
-import Process from './components/Process'
-import Differentials from './components/Differentials'
-import Metrics from './components/Metrics'
-import About from './components/About'
-import Testimonials from './components/Testimonials'
-import Faq from './components/Faq'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import ProjectsPage from './pages/ProjectsPage'
 import useFinePointer from './lib/useFinePointer'
 import { whatsappHref } from './lib/site'
 
@@ -58,17 +50,11 @@ export default function App() {
       <Header />
 
       <main>
-        <Hero />
-        <Pillars />
-        <Services />
-        <Projects />
-        <Process />
-        <Differentials />
-        <Metrics />
-        <About />
-        <Testimonials />
-        <Faq />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projetos" element={<ProjectsPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
       </main>
 
       <Footer />

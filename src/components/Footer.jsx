@@ -1,4 +1,5 @@
 import { ArrowUpRight, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { contact, nav, whatsappHref } from '../lib/site'
 import { Wordmark } from './primitives'
 
@@ -19,10 +20,10 @@ export default function Footer() {
             <p className="mt-6 max-w-sm text-pretty text-[17px] leading-relaxed text-chalk-dim">
               Sites modernos para marcas que querem crescer no digital.
             </p>
-            <a href="#contato" className="btn-primary group mt-8">
+            <Link to="/#contato" className="btn-primary group mt-8">
               Solicitar orçamento
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-8">
@@ -31,12 +32,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
                       className="text-[15px] text-chalk-dim transition-colors hover:text-chalk"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

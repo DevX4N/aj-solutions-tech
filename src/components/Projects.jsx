@@ -1,7 +1,7 @@
 import { useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '../lib/site'
-import { Reveal, SectionMark } from './primitives'
+import { Reveal } from './primitives'
 
 export default function Projects() {
   const reduce = useReducedMotion()
@@ -11,7 +11,6 @@ export default function Projects() {
       <div className="shell">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <SectionMark id="/ 03">Projetos</SectionMark>
             <h2 className="font-display text-[clamp(2rem,4.6vw,3.3rem)] font-bold leading-[1.02] tracking-tighter text-chalk text-balance">
               Projetos criados para gerar impacto.
             </h2>

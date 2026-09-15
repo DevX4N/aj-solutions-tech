@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   ArrowUpRight,
   Building2,
@@ -120,10 +121,10 @@ function ServiceCard({ service, Icon, wide }) {
           wide ? 'lg:pl-8' : 'mt-6'
         } flex items-center gap-2 text-[13px] font-medium text-chalk-faint transition-colors duration-300 group-hover:text-electric-bright`}
       >
-        <a href="#contato" className="inline-flex items-center gap-1.5">
+        <Link to="/#contato" className="inline-flex items-center gap-1.5">
           Solicitar orçamento
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        </Link>
       </div>
     </article>
   )

@@ -30,7 +30,7 @@ export default function Testimonials() {
     <section className="relative py-24 sm:py-28">
       <div className="shell">
         <div className="mb-14 max-w-2xl">
-          <SectionMark id="/ 07">Depoimentos</SectionMark>
+          <SectionMark id="/ 06">Depoimentos</SectionMark>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.3rem)] font-bold leading-[1.02] tracking-tighter text-chalk text-balance">
             O resultado começa com uma boa experiência.
           </h2>

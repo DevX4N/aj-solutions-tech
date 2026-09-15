@@ -6,7 +6,7 @@ export default function About() {
       <div className="shell">
         <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
-            <SectionMark id="/ 06">Sobre</SectionMark>
+            <SectionMark id="/ 05">Sobre</SectionMark>
             <h2 className="max-w-2xl font-display text-[clamp(2rem,4.4vw,3.2rem)] font-bold leading-[1.04] tracking-tighter text-chalk text-balance">
               Tecnologia com propósito.{' '}
               <span className="text-chalk-faint">Design com estratégia.</span>

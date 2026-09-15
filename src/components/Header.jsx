@@ -1,5 +1,6 @@
 import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { nav } from '../lib/site'
 import { Wordmark } from './primitives'
@@ -39,21 +40,21 @@ export default function Header() {
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
             {nav.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className="rounded-full px-3.5 py-2 text-[14px] font-medium text-chalk-dim transition-colors duration-200 hover:text-chalk"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="hidden lg:block">
-            <a href="#contato" className="btn-primary group text-[14px]">
+            <Link to="/#contato" className="btn-primary group text-[14px]">
               Solicitar orçamento
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
 
           <button
@@ -86,27 +87,30 @@ export default function Header() {
             >
               <nav className="flex flex-col" aria-label="Navegação mobile">
                 {nav.map((item, i) => (
-                  <m.a
+                  <m.div
                     key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-medium text-chalk-dim transition-colors hover:bg-white/5 hover:text-chalk"
                     initial={reduce ? {} : { opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: reduce ? 0 : 0.04 * i + 0.05 }}
                   >
-                    {item.label}
-                    <span className="mono-label">{String(i + 1).padStart(2, '0')}</span>
-                  </m.a>
+                    <Link
+                      to={item.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-medium text-chalk-dim transition-colors hover:bg-white/5 hover:text-chalk"
+                    >
+                      {item.label}
+                      <span className="mono-label">{String(i + 1).padStart(2, '0')}</span>
+                    </Link>
+                  </m.div>
                 ))}
-                <a
-                  href="#contato"
+                <Link
+                  to="/#contato"
                   onClick={() => setOpen(false)}
                   className="btn-primary mt-2 w-full"
                 >
                   Solicitar orçamento
                   <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </Link>
               </nav>
             </m.div>
           </m.div>

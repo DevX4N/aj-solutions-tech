@@ -1,6 +1,7 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { ArrowRight, Gauge, MousePointerClick, Smartphone, Sparkles } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { whatsappHref } from '../lib/site'
 import useFinePointer from '../lib/useFinePointer'
 import BrowserMock from './BrowserMock'
@@ -129,13 +130,13 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.44 }}
               className="mt-9 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
             >
-              <a href="#contato" className="btn-primary group">
+              <Link to="/#contato" className="btn-primary group">
                 Solicitar orçamento
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a href="#projetos" className="btn-ghost">
+              </Link>
+              <Link to="/projetos" className="btn-ghost">
                 Ver projetos
-              </a>
+              </Link>
             </m.div>
 
             {/* Proof row */}

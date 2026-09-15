@@ -21,13 +21,15 @@ export const whatsappHref = `https://wa.me/${contact.whatsappNumber}?text=${enco
   contact.whatsappMessage,
 )}`
 
+// href começando com '/' indica rota do router; começando com '#' é âncora
+// dentro da home. O componente de navegação resolve os dois casos.
 export const nav = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Serviços', href: '#servicos' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Processo', href: '#processo' },
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Início', href: '/#inicio' },
+  { label: 'Serviços', href: '/#servicos' },
+  { label: 'Projetos', href: '/projetos' },
+  { label: 'Processo', href: '/#processo' },
+  { label: 'Sobre', href: '/#sobre' },
+  { label: 'Contato', href: '/#contato' },
 ]
 
 export const marqueeItems = [

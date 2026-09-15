@@ -13,7 +13,7 @@ export default function Faq() {
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionMark id="/ 08">FAQ</SectionMark>
+            <SectionMark id="/ 07">FAQ</SectionMark>
             <h2 className="font-display text-[clamp(2rem,4.4vw,3.1rem)] font-bold leading-[1.03] tracking-tighter text-chalk text-balance">
               Dúvidas frequentes
             </h2>

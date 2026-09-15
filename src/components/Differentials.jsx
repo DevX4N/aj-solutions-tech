@@ -14,7 +14,7 @@ export default function Differentials() {
       <div className="shell relative">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
-            <SectionMark id="/ 05">Diferenciais</SectionMark>
+            <SectionMark id="/ 04">Diferenciais</SectionMark>
             <h2 className="font-display text-[clamp(2rem,4.4vw,3.2rem)] font-bold leading-[1.02] tracking-tighter text-chalk text-balance">
               Por que escolher a AJ Solutions&nbsp;Tech?
             </h2>

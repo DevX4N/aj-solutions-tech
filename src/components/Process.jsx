@@ -16,7 +16,7 @@ export default function Process() {
     <section id="processo" className="relative py-24 sm:py-28">
       <div className="shell">
         <div className="mb-16 max-w-2xl">
-          <SectionMark id="/ 04">Processo</SectionMark>
+          <SectionMark id="/ 03">Processo</SectionMark>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.3rem)] font-bold leading-[1.02] tracking-tighter text-chalk text-balance">
             Do primeiro contato ao site no ar.
           </h2>
