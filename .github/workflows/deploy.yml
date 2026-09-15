@@ -6,10 +6,12 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Evita dois deploys simultâneos pisando um no outro
+# Evita dois deploys simultaneos pisando um no outro.
+# cancel-in-progress: false para nao interromper um upload FTP no meio,
+# o que deixaria arquivos parcialmente enviados no servidor.
 concurrency:
   group: deploy-hostgator
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -37,14 +39,18 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          # Pasta local publicada (saída do Vite)
+          port: 21
+          # Timeout generoso: o firewall da HostGator as vezes demora
+          # a completar o handshake TLS vindo dos IPs do GitHub Actions.
+          timeout: 60000
+          # Pasta local publicada (saida do Vite)
           local-dir: ./dist/
           # Pasta remota de destino.
-          # Conta FTP dedicada com Diretório = public_html → o home JÁ é
-          # o public_html, então enviamos na raiz ("./").
+          # Conta FTP dedicada com Diretorio = public_html -> o home JA e
+          # o public_html, entao enviamos na raiz ("./").
           # (Se um dia usar a conta principal do cPanel, troque para "public_html/".)
           server-dir: ./
-          # Não remove pastas do servidor que não fazem parte do build
+          # Nao remove pastas do servidor que nao fazem parte do build
           # (ex.: api/, .well-known/ do AutoSSL)
           exclude: |
             **/.git*
