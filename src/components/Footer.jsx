@@ -18,10 +18,11 @@ export default function Footer() {
           <div>
             <Wordmark />
             <p className="mt-6 max-w-sm text-pretty text-[17px] leading-relaxed text-chalk-dim">
-              Sites modernos para marcas que querem crescer no digital.
+              Criamos sites estratégicos para empresas que querem fortalecer sua presença digital
+              e conquistar novos clientes.
             </p>
             <Link to="/#contato" className="btn-primary group mt-8">
-              Solicitar orçamento
+              Iniciar projeto
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>

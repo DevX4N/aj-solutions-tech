@@ -124,25 +124,26 @@ export default function Contact() {
           <div className="lg:pt-4">
             <SectionMark id="/ 08">Contato</SectionMark>
             <h2 className="font-display text-[clamp(2.2rem,4.8vw,3.5rem)] font-extrabold leading-[1.0] tracking-tightest text-chalk text-balance">
-              Vamos transformar sua ideia em um site que chama atenção?
+              Vamos transformar sua ideia em uma experiência digital que gera resultados.
             </h2>
             <p className="mt-6 max-w-md text-pretty text-[17px] leading-relaxed text-chalk-dim">
-              Conte um pouco sobre o seu projeto e descubra como podemos criar uma experiência
-              digital que represente sua marca.
+              Conte sobre seu projeto e descubra como podemos criar uma solução digital
+              estratégica, rápida e personalizada para fortalecer sua marca e gerar novas
+              oportunidades.
             </p>
 
             <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-ghost mt-8 group">
               <MessageCircle className="h-4.5 w-4.5 text-electric-bright" strokeWidth={2} />
-              Falar no WhatsApp
+              Conversar pelo WhatsApp
             </a>
 
             <div className="mt-12 space-y-4 border-t border-line pt-8">
               <p className="font-display text-[18px] font-medium text-chalk">
-                Tem uma ideia? Vamos conversar.
+                Seu próximo projeto começa aqui.
               </p>
               <p className="max-w-sm text-[14.5px] leading-relaxed text-chalk-faint">
-                Sem templates genéricos. Cada projeto é pensado para a sua marca. Design bonito é
-                importante — resultado também.
+                Sem templates genéricos. Criamos experiências digitais personalizadas, combinando
+                design, tecnologia e estratégia para empresas que querem crescer.
               </p>
             </div>
           </div>
@@ -167,7 +168,7 @@ export default function Contact() {
                 />
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Nome" id="nome" value={form.nome} onChange={set('nome')} error={errors.nome} placeholder="Seu nome" required maxLength={100} />
-                  <Field label="Empresa" id="empresa" value={form.empresa} onChange={set('empresa')} placeholder="Opcional" maxLength={100} />
+                  <Field label="Empresa (opcional)" id="empresa" value={form.empresa} onChange={set('empresa')} placeholder="Nome da empresa" maxLength={100} />
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="E-mail" id="email" type="email" value={form.email} onChange={set('email')} error={errors.email} placeholder="voce@empresa.com.br" required maxLength={254} />
@@ -175,7 +176,7 @@ export default function Contact() {
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <SelectField label="Tipo de projeto" id="tipo" value={form.tipo} onChange={set('tipo')} error={errors.tipo} options={projectTypes} required />
-                  <SelectField label="Faixa de orçamento" id="orcamento" value={form.orcamento} onChange={set('orcamento')} options={budgetRanges} placeholder="Selecione (opcional)" />
+                  <SelectField label="Investimento estimado" id="orcamento" value={form.orcamento} onChange={set('orcamento')} options={budgetRanges} placeholder="Selecione (opcional)" />
                 </div>
 
                 <div>
@@ -185,7 +186,7 @@ export default function Contact() {
                     rows={4}
                     value={form.mensagem}
                     onChange={set('mensagem')}
-                    placeholder="Descreva rapidamente sua ideia, objetivo e prazo."
+                    placeholder="Conte sobre sua ideia, objetivo e como podemos ajudar."
                     maxLength={2000}
                     className={`w-full resize-none rounded-xl border bg-ink px-4 py-3 text-[15px] text-chalk placeholder:text-chalk-faint transition-colors duration-200 hover:border-white/20 focus:border-electric focus:outline-none focus:ring-0 ${
                       errors.mensagem ? 'border-red-400/70' : 'border-line'
@@ -206,7 +207,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="btn-primary group w-full py-4 text-[15.5px] disabled:cursor-not-allowed disabled:opacity-80"
+                  className="btn-primary group w-full py-4 text-[15.5px] transition-all duration-300 hover:shadow-[0_20px_60px_-20px_rgba(91,140,255,0.55)] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-80"
                 >
                   {status === 'loading' ? (
                     <>
@@ -221,7 +222,7 @@ export default function Contact() {
                   )}
                 </button>
                 <p className="text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-chalk-faint">
-                  Resposta em até 1 dia útil
+                  Retorno em até 1 dia útil
                 </p>
               </form>
             )}
