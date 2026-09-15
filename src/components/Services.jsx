@@ -39,8 +39,11 @@ export default function Services() {
         <div className="mb-14 max-w-2xl">
           <SectionMark id="/ 02">Serviços</SectionMark>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.3rem)] font-bold leading-[1.02] tracking-tighter text-chalk text-balance">
-            Soluções digitais para destacar sua marca.
+            Experiências digitais criadas para empresas que querem crescer.
           </h2>
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-chalk-dim sm:text-base">
+            Criamos sites estratégicos, rápidos e personalizados para fortalecer sua presença online, aumentar sua autoridade e gerar novas oportunidades.
+          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
@@ -86,7 +89,7 @@ function ServiceCard({ service, Icon, wide }) {
     <article
       ref={ref}
       {...trackingProps}
-      className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-ink-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 sm:p-7 ${
+      className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-ink-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric/30 hover:shadow-[0_18px_60px_-30px_rgba(91,140,255,0.55)] sm:p-7 ${
         wide ? 'flex flex-col justify-between gap-6 lg:flex-row lg:items-center' : ''
       }`}
     >
@@ -117,13 +120,14 @@ function ServiceCard({ service, Icon, wide }) {
       </div>
 
       <div
-        className={`relative ${
-          wide ? 'lg:pl-8' : 'mt-6'
-        } flex items-center gap-2 text-[13px] font-medium text-chalk-faint transition-colors duration-300 group-hover:text-electric-bright`}
+        className={`relative ${wide ? 'lg:pl-8' : 'mt-6'}`}
       >
-        <Link to="/#contato" className="inline-flex items-center gap-1.5">
-          Solicitar orçamento
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <Link
+          to="/#contato"
+          className="inline-flex items-center gap-2 rounded-full border border-line bg-ink-700/50 px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-chalk-dim transition-all duration-300 hover:border-electric/50 hover:bg-electric/10 hover:text-electric-bright group-hover:border-electric/40 group-hover:text-electric-bright"
+        >
+          Falar sobre projeto
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
     </article>
